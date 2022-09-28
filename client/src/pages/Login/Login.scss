@@ -1,0 +1,42 @@
+.registr {
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient(0deg, rgba(195, 34, 194, 1) 0%, rgba(253, 132, 45, 1) 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	&__wrapper {
+		background-color: #fff;
+		padding: 25px 40px;
+		min-width: 400px;
+		border-radius: 8px;
+	}
+	&__input-container{
+		display: flex;
+		flex-direction: column;
+	}
+	&__form {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		input {
+			min-height: 45px;
+			font-size: 20px;
+			margin-bottom: 20px;
+			&:last-of-type {
+				margin-bottom:0px;
+			}
+		}
+		button {
+			min-height: 30px;
+			font-size: 20px;
+			margin-top: 30px;
+		}
+	}
+	&__tip{
+		font-size: 12px;
+		margin-top: 12px;
+		text-align: center;
+	}
+}
