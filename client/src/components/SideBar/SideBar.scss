@@ -1,0 +1,19 @@
+.side-bar {
+	grid-area: side;
+	font-size: 30px;
+	& > ul > li {
+		margin-bottom: 30px;
+	}
+	&__recent-post {
+		ul {
+			li {
+				margin-top: 24px;
+			}
+		}
+	}
+	&__list-tags {
+		li {
+			margin-right: 10px;
+		}
+	}
+}

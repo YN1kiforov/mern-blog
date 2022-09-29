@@ -1,0 +1,26 @@
+.side-bar-post {
+	display: grid;
+	grid-template-areas:
+		"image title"
+		"image info";
+		grid-template-columns: 70px auto;
+		grid-template-rows: 50px 20px;
+		gap: 0px 10px;
+	img {
+		width: 70px;
+		height: 70px;
+		grid-area: image;
+
+	}
+	&__title{
+		font-size: 15px;
+		grid-area: title;
+		margin: 0px 0px 0px 0px;
+
+	}
+	&__date{
+		font-size: 12px;
+
+		grid-area: info;
+	}
+}

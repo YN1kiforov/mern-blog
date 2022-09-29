@@ -4,13 +4,13 @@ import './index.css';
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home"
-import Post from './pages/Post/Post';
-import WritePost from './pages/WritePost/WritePost';
+import Post from './pages/FullPost/FullPost';
+import CreatePost from './pages/CreatePost/CreatePost';
 import Login from './pages/Login/Login';
 import Posts from './pages/Posts/Posts';
 import Register from './pages/Register/Register';
 import User from './pages/User/User';
-
+import SideBar from './components/SideBar/SideBar';
 
 import {
   createBrowserRouter,
@@ -23,6 +23,7 @@ const MainLayout = () => {
     <>
       <Header />
       <Outlet />
+      <SideBar />
       <Footer />
     </>
   );
@@ -32,35 +33,31 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     children: [
-        {
-          path: "/",
-          element: <Home />,
-        },
-        {
-          path: "/post/:id",
-          element: <Post />,
-        },
-        {
-          path: "/user/:id",
-          element: <User />,
-        },
-        {
-          path: "/posts",
-          children: [
-            {
-              path: "/posts/:category",
-              element: <Posts />,
-            },
-            {
-              path: "/posts",
-              element: <Posts />,
-            },
-          ]
-        },
-        {
-          path: "/write-post",
-          element: <WritePost />,
-        },
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/post/:id",
+        element: <Post />,
+      },
+      {
+        path: "/user/:id",
+        element: <User />,
+      },
+      {
+        path: "/posts",
+        element: <Posts />,
+        children: [
+          {
+            path: "/posts/:category",
+          }
+        ]
+      },
+      {
+        path: "/create-post",
+        element: <CreatePost />,
+      },
     ],
   },
   {

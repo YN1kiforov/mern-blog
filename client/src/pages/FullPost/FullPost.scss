@@ -1,0 +1,15 @@
+.full-post{
+	&>li{
+		margin-bottom: 40px;
+		&:last-of-type{
+			margin: 0px 0px 0px 0px;
+		}
+	}
+}
+.comments {
+	padding: 50px 60px;
+	background-color: #fff;
+	& textarea {
+		width: 100%;
+	}
+}

@@ -1,8 +1,7 @@
 .footer{
-	min-height: 100px;
+	grid-area: footer;
 	display: flex;
 	align-items: center;
-
 	&__logo{
 		height: 72px;
 	}
