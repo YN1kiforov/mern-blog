@@ -11,6 +11,7 @@ import Posts from './pages/Posts/Posts';
 import Register from './pages/Register/Register';
 import User from './pages/User/User';
 import SideBar from './components/SideBar/SideBar';
+import { AuthContextProvider } from './Auth';
 
 import {
   createBrowserRouter,
@@ -72,6 +73,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
+
   </React.StrictMode>
 );
