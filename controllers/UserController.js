@@ -2,25 +2,29 @@ const User = require("../models/User");
 
 exports.register = async (req, res) => {
 	try {
-		const { email, password } = req.body
-		const user = new User({ email, password })
+		console.log(req.body)
+		const { name, email, password } = req.body
+		const user = new User({ email, password, name })
 		await user.save()
-		res.json({ message: 'norm' })
+		res.status(200).json({ message: 'vse norm', user })
 	} catch (e) {
-		res.json({ message: `error ${e}` })
+		res.status(500).json({ message: `error ${e}` })
 	}
 }
 exports.login = async (req, res) => {
 	try {
-		const { email } = req.body
+		const { email, password } = req.body
 		const user = await User.findOne({ email })
-		if (user) {
-			res.json({ message: 'norm' })
+		const isValidPassword = password === user.password
+		if (user && isValidPassword) {
+			res.status(200).json({ message: 'norm', user })
+		}else {
+			res.status(500).json({ message: 'ne norm' })
+
 		}
-		res.json({ message: 'norm' })
 
 	} catch (e) {
-		res.json({ message: `error ${e}` })
+		res.status(500).json({ message: `error ${e}` })
 	}
 }
 

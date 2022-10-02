@@ -11,7 +11,8 @@ import Posts from './pages/Posts/Posts';
 import Register from './pages/Register/Register';
 import User from './pages/User/User';
 import SideBar from './components/SideBar/SideBar';
-import { AuthContextProvider } from './Auth';
+import { AuthContextProvider } from './AuthContext';
+import { SnackbarProvider } from 'notistack';
 
 import {
   createBrowserRouter,
@@ -73,9 +74,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <RouterProvider router={router} />
-    </AuthContextProvider>
-
+    <SnackbarProvider maxSnack={3}>
+      <AuthContextProvider>
+        <RouterProvider router={router} />
+      </AuthContextProvider>
+    </SnackbarProvider>
   </React.StrictMode>
 );

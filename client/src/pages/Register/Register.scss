@@ -1,6 +1,9 @@
-.login {
+.register {
 	width: 100vw;
 	height: 100vh;
+	position: fixed;
+	top:0;
+	left:0;
 	background: linear-gradient(0deg, rgba(195, 34, 194, 1) 0%, rgba(253, 132, 45, 1) 100%);
 	display: flex;
 	align-items: center;
@@ -22,15 +25,15 @@
 		input {
 			min-height: 45px;
 			font-size: 20px;
-			margin-bottom: 20px;
-			&:last-of-type {
-				margin-bottom:0px;
+			&+label{
+				color: red;
+				margin-bottom: 20px;
 			}
 		}
 		button {
 			min-height: 30px;
 			font-size: 20px;
-			margin-top: 30px;
+			margin-top: 10px;
 		}
 	}
 	&__tip{

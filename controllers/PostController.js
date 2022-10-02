@@ -6,7 +6,7 @@ exports.getAll = async (req, res) => {
 		res.json({ message: `norm :))`, posts })
 
 	} catch (e) {
-		res.json({ message: `error ${e}` })
+		res.status(200).json({ message: `error ${e}` })
 	}
 }
 exports.getPost = async (req, res) => {
@@ -17,7 +17,7 @@ exports.getPost = async (req, res) => {
 		res.json({ message: `norm post`, post })
 
 	} catch (e) {
-		res.json({ message: `error ${e}` })
+		res.status(200).json({ message: `error ${e}` })
 	}
 }
 exports.postPost = async (req, res) => {
@@ -28,7 +28,7 @@ exports.postPost = async (req, res) => {
 		res.json({ message: 'norm' })
 
 	} catch (e) {
-		res.json({ message: `error ${e}` })
+		res.status(200).json({ message: `error ${e}` })
 	}
 }
 exports.patchPost = async (req, res) => {
@@ -37,7 +37,7 @@ exports.patchPost = async (req, res) => {
 		await Post.updateOne({ _id: id }, { $set: { title } })
 		res.json({ message: 'norm' })
 	} catch (e) {
-		res.json({ message: `error ${e}` })
+		res.status(200).json({ message: `error ${e}` })
 	}
 }
 exports.deletePost = async (req, res) => {
@@ -46,6 +46,6 @@ exports.deletePost = async (req, res) => {
 		await Post.deleteOne({_id:id})
 		res.json({ message: 'norm' })
 	} catch (e) {
-		res.json({ message: `error ${e}` })
+		res.status(200).json({ message: `error ${e}` })
 	}
 }
