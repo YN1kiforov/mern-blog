@@ -3,7 +3,7 @@ import Photo from "../../assets/random_photo.jpg"
 import Comments_icon from "../../assets/comment_icon.png"
 import Views_icon from "../../assets/views_icon.webp"
 import Avatar from "../../assets/avatar_icon.png"
-
+//<div dangerouslySetInnerHTML={{ __html: value }} />
 const Post = () => {
 	return (
 		<div className="post">

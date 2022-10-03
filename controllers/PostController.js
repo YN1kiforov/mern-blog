@@ -22,8 +22,9 @@ exports.getPost = async (req, res) => {
 }
 exports.postPost = async (req, res) => {
 	try {
-		const { title } = req.body
-		const post = new Post({ title })
+		const { title, author, body } = req.body
+		console.log(`title ${title} \n author ${author}\nbody ${body}`)
+		const post = new Post({ title, author, body })
 		await post.save()
 		res.json({ message: 'norm' })
 
@@ -43,7 +44,7 @@ exports.patchPost = async (req, res) => {
 exports.deletePost = async (req, res) => {
 	try {
 		const { id } = req.body;
-		await Post.deleteOne({_id:id})
+		await Post.deleteOne({ _id: id })
 		res.json({ message: 'norm' })
 	} catch (e) {
 		res.status(200).json({ message: `error ${e}` })

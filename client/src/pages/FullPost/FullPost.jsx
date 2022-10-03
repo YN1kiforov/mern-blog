@@ -31,12 +31,6 @@ const FullPost = () => {
 			</li>
 			<li className='full-post__author'>
 			<AuthorBlock/>
-				{/* <div className='author__info'>
-					<img src={Avatar} alt="" />
-					<span className="author__name">Никифоров Яков</span>
-				</div>
-				<div className='author__about'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia, facilis.</div>
-				<button className='author__sub'>Подисаться</button> */}
 			</li>
 			<li className='full-post__comments comments'>
 				<div className=''>

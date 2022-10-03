@@ -1,0 +1,12 @@
+.editor {
+	&__content {
+		margin: 20px 0px;
+		& > label {
+			font-size: 24px;
+			margin-right: 14px;
+		}
+		& > div {
+			margin: 20px 0px;
+		}
+	}
+}
