@@ -2,7 +2,12 @@ const Post = require("../models/Post");
 
 exports.getAll = async (req, res) => {
 	try {
-		const posts = await Post.find()
+		const { limit, category } = req.query
+		const posts = await Post.find().populate({
+			path: 'author',
+			select:
+				'name avatarUrl',
+		})
 		res.json({ message: `norm :))`, posts })
 
 	} catch (e) {
@@ -23,7 +28,6 @@ exports.getPost = async (req, res) => {
 exports.postPost = async (req, res) => {
 	try {
 		const { title, author, body } = req.body
-		console.log(`title ${title} \n author ${author}\nbody ${body}`)
 		const post = new Post({ title, author, body })
 		await post.save()
 		res.json({ message: 'norm' })

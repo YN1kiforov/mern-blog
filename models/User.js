@@ -16,7 +16,7 @@ const UserSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	// avatarUrl: String,
+	avatarUrl: String,
 },
 	{
 		timestamps: true,
