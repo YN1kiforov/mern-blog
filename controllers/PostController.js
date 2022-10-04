@@ -3,12 +3,14 @@ const Post = require("../models/Post");
 exports.getAll = async (req, res) => {
 	try {
 		const { limit, category } = req.query
+		console.log(limit)
 		const posts = await Post.find().populate({
 			path: 'author',
 			select:
 				'name avatarUrl',
 		})
-		res.json({ message: `norm :))`, posts })
+		const filteredPosts = posts.slice(posts.length - (limit || 0))
+		res.json({ message: `norm :))`, posts: filteredPosts })
 
 	} catch (e) {
 		res.status(200).json({ message: `error ${e}` })

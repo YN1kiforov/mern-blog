@@ -9,7 +9,7 @@ const Home = () => {
 	useEffect(() => {
 		(async () => {
 			try {
-				let { data } = await axios.get('/getAll')
+				let { data } = await axios.get('/getAll?limit=3')
 				console.log(data)
 				setPosts(data.posts)
 			} catch (error) {
@@ -31,6 +31,8 @@ const Home = () => {
 							authorAvatar={post.author.avatarUrl}
 							authorName={post.author.name}
 							body={post.body}
+							link={post._id}
+							date={post.createdAt}
 							className="home__post">
 						</Post>
 					</li>
