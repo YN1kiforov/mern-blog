@@ -1,14 +1,15 @@
 import "./AuthorBlock.scss"
 import Avatar from "../../assets/avatar_icon.png"
 
-const AuthorBlock = () => {
+const AuthorBlock = (props) => {
+	const author = props.author;
 	return (
 		<div className='author'>
 			<div className='author__info'>
 				<img src={Avatar} alt="" />
-				<span className="author__name">Никифоров Яков</span>
+				<span className="author__name">{author.name}</span>
 			</div>
-			<div className='author__about'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia, facilis.</div>
+			<div className='author__about'>{author.about}</div>
 			<button className='author__sub'>Подисаться</button>
 		</div>
 	);

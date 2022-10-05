@@ -3,6 +3,8 @@ const app = express()
 const port = 3001;
 const mongoose = require('mongoose');
 const user = require('./routes/user')
+const comment = require('./routes/comment')
+
 const post = require('./routes/post')
 const cors = require('cors');
 
@@ -15,6 +17,7 @@ app.use(cors({
     origin: '*'
 }));
 app.use('/', user)
+app.use('/', comment)
 app.use('/', post)
 
 

@@ -7,7 +7,7 @@ const PostSchema = new Schema({
   body: String,
   viewsCount: { type: Number, default: 0 },
   commentsCount: { type: Number, default: 0 },
-  //comments: [{ body: String, date: Date }],
+  comments: [{ body: String, date: Date, author: { type: Schema.Types.ObjectId, ref: 'BlogUser', } }],
 }, { timestamps: true });
 
 module.exports = mongoose.model("Post", PostSchema)

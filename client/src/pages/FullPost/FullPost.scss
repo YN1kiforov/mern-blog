@@ -1,7 +1,10 @@
-.full-post{
-	&>li{
+.full-post {
+	& h2{
+		display: block;
+	}
+	& > div > li {
 		margin-bottom: 40px;
-		&:last-of-type{
+		&:last-of-type {
 			margin: 0px 0px 0px 0px;
 		}
 	}
@@ -11,5 +14,8 @@
 	background-color: #fff;
 	& textarea {
 		width: 100%;
+	}
+	& ul>li{
+		margin-bottom:20px;
 	}
 }

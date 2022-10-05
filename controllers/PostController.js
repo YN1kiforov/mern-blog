@@ -18,8 +18,13 @@ exports.getAll = async (req, res) => {
 }
 exports.getPost = async (req, res) => {
 	try {
-		const postId = req.query.id
-		const post = await Post.findById(postId)
+
+		const postId = req.query.postId
+		const post = await Post.findById(postId).populate({
+			path: 'author',
+			select:
+				'name avatarUrl',
+		})
 
 		res.json({ message: `norm post`, post })
 

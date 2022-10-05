@@ -10,8 +10,7 @@ const CreatePost = () => {
 	const [body, setBody] = useState(state?.title || "");
 	const [title, setTitle] = useState(state?.desc || "");
 	const submitHandler = async () => {
-		const res = await axios.post('/post', { title, author: currentUser._id, body })
-		console.log(res)
+		await axios.post('/post', { title, author: currentUser._id, body })
 	}
 
 	return (

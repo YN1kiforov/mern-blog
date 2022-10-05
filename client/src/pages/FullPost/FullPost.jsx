@@ -2,49 +2,82 @@ import "./FullPost.scss"
 import Photo from "../../assets/random_photo.jpg"
 import Comments_icon from "../../assets/comment_icon.png"
 import Views_icon from "../../assets/views_icon.webp"
-import Avatar from "../../assets/avatar_icon.png"
 import AuthorBlock from "../../components/AuthorBlock/AuthorBlock"
 import Comment from "../../components/Comment/Comment"
-
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState, useContext } from "react"
+import { AuthContext } from "../../AuthContext"
+import axios from "../../axios"
+import { dataFormatter } from "../../dateFormatter"
 const FullPost = () => {
+	const { currentUser } = useContext(AuthContext)
+	const location = useLocation()
+	const postId = location.pathname.split('/')[2];
+	const [post, setPost] = useState(null);
+	const [commentValue, setCommentValue] = useState("");
+	const [comments, setComments] = useState(null);
+
+
+	useEffect(() => {
+		(async () => {
+			const [posts, comments] = await Promise.all([
+				axios.get(`/post?postId=${postId}`),
+				axios.get(`/getComments?postId=${postId}`)
+			]);
+			setPost(posts.data.post)
+			setComments(comments.data.comments)
+		})()
+
+	}, [postId]);
+	async function sendComment() {
+		try {
+			let { data } = await axios.post("/comment", { postId, author: currentUser._id, body: commentValue })
+
+			setComments((prev) => [data.comment, ...prev])
+		} catch (error) {
+			console.log(error)
+		}
+	}
 	return (
 		<ul className="full-post">
-			<li className="post">
-				<img src={Photo} alt="" />
-				<ul className='post__info'>
-					<li className="post__date">Январь 31, 2001</li>
-					<li className="post__comments">
-						<img className="post__icon" src={Comments_icon} alt="" />
-						0
-					</li>
-					<li className="post__views">
-						<img className="post__icon" src={Views_icon} alt="" />
-						777
-					</li>
-				</ul>
-				<div className='full-post__content'>
+			{post ? <div className=''>
+				<li className="post">
+					<img src={Photo} alt="" />
+					<h2>{post.title}</h2>
+					<ul className='post__info'>
 
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti officiis recusandae reiciendis minus praesentium, suscipit eligendi eaque at corrupti fugit architecto quis necessitatibus repellendus laborum omnis ipsam laboriosam? Maxime, minus.</p>
-					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat tempore nesciunt fuga hic! Commodi nihil consectetur odio tempore voluptatibus incidunt quos? Dolores aspernatur consequatur ratione rem doloribus perspiciatis nihil voluptate!</p>
+						<li className="post__date">{dataFormatter(post.createdAt)}</li>
+						<li className="post__comments">
+							<img className="post__icon" src={Comments_icon} alt="" />
+							{post.commentsCount}
+						</li>
+						<li className="post__views">
+							<img className="post__icon" src={Views_icon} alt="" />
+							{post.viewsCount}
+						</li>
+					</ul>
+					<div className='full-post__content'>
+						<div dangerouslySetInnerHTML={{ __html: post.body }} className="post__text" />
+					</div>
+				</li>
+				<li className='full-post__author'>
+					<AuthorBlock author={post.author} />
+				</li>
+				<li className='full-post__comments comments'>
+					<div className=''>
+						<h4 htmlFor="Ваш коментарий">Напишите коментарий</h4>
+						<textarea onChange={(e) => { setCommentValue(e.target.value) }} value={commentValue} name="" id="" cols="30" rows="10" placeholder="Напишите комментарий"></textarea>
+						<button onClick={sendComment} className=''>Отправить</button>
+					</div>
+					{comments ? <ul className="comments__list">
+						<h4>Коментарии</h4>
+						{comments.map(comment => {
+							return <li><Comment body={comment.body} date={comment.createdAt} author={comment.author} /></li>
+						})}
+					</ul> : <div className=''>Коментарии не найдены</div>}
+				</li>
+			</div> : <div className=''>Статья не найдена</div>}
 
-				</div>
-			</li>
-			<li className='full-post__author'>
-			<AuthorBlock/>
-			</li>
-			<li className='full-post__comments comments'>
-				<div className=''>
-					<h4 htmlFor="Ваш коментарий">Напишите коментарий</h4>
-					<textarea name="" id="" cols="30" rows="10" placeholder="Напишите комментарий"></textarea>
-					<button className=''>Отправить</button>
-				</div>
-				<ul className="comments__list">
-					<h4>Коментарии</h4>
-					{[1, 2, 3].map(comment => {
-						return <Comment />
-					})}
-				</ul>
-			</li>
 		</ul>
 
 	);
