@@ -3,7 +3,7 @@ import Logo from "../../assets/logo2.png"
 import search from "../../assets/search_icon.jpg"
 import notification from "../../assets/notification.png"
 import avatar from "../../assets/avatar_icon.png"
-
+import { Menu, MenuItem } from "../Menu/Menu"
 
 const Header = () => {
 	return (
@@ -20,8 +20,16 @@ const Header = () => {
 					<img src={notification}></img>
 				</li>
 				<li className="header__avatar">
-					<img src={avatar}></img>
+					<Menu>
+						<img src={avatar}></img>
+						<MenuItem>000</MenuItem>
+						<MenuItem>111</MenuItem>
+						<MenuItem>2222</MenuItem>
+						<MenuItem>3333</MenuItem>
+					</Menu>
+
 				</li>
+
 			</ul>
 		</div>
 	);
