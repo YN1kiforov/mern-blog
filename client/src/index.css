@@ -28,6 +28,7 @@ code {
 *{
   box-sizing: border-box;
 }
+
 ul,li{
   list-style: none;
   margin: 0px 0px 0px 0px;
