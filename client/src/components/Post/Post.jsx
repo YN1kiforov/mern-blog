@@ -13,7 +13,7 @@ const Post = (props) => {
 			<img src={Photo}></img>
 			<h2>{props.title}</h2>
 			<ul className='post__info'>
-				<li className="post__date">{ dataFormatter(props.date)}</li>
+				<li className="post__date">{dataFormatter(props.date)}</li>
 				<li className="post__comments">
 					<img className="post__icon" src={Comments_icon} alt="" />
 

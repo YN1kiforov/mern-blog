@@ -50,11 +50,6 @@ const router = createBrowserRouter([
       {
         path: "/posts",
         element: <Posts />,
-        children: [
-          {
-            path: "/posts/:category",
-          }
-        ]
       },
       {
         path: "/create-post",

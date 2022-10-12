@@ -1,18 +1,37 @@
 import "./SideBar.scss"
 import SideBarPost from "../SideBarPost/SideBarPost"
 import Tag from "../Tag/Tag"
+import { useState, useEffect } from "react"
+import axios from "../../axios"
 
 const SideBar = () => {
+	const [posts, setPosts] = useState(null);
+	useEffect(() => {
+		(async () => {
+			try {
+				let { data } = await axios.get('/getAll?limit=3')
+				setPosts(data.posts)
+			} catch (error) {
+				console.log(error)
+			}
+		})()
+	}, []);
 	return (
 		<div className="side-bar">
 			<ul>
 				<li className="side-bar__recent-post">
 					Последние посты
-					<ul>
-						{[1, 2, 3].map(post => {
-							return <SideBarPost />
+					{posts ? <ul>
+						{posts.map(post => {
+							return <SideBarPost
+								title={post.title}
+								link={post._id}
+								date={post.createdAt}
+							/>
 						})}
-					</ul>
+					</ul> :
+						<div className=''>...</div>}
+
 				</li>
 				<li className="side-bar__tags">
 					Тэги

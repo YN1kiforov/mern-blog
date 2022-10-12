@@ -2,15 +2,17 @@ const Post = require("../models/Post");
 
 exports.getAll = async (req, res) => {
 	try {
-		const { limit, category } = req.query
-		console.log(limit)
-		const posts = await Post.find().populate({
+		//Post.createIndex({ title: "text" })
+
+		const { limit, category, sessarch } = req.query
+		// $text: { $search: "*" }
+		const posts = await Post.find().limit(limit || 3).sort({ 'createdAt': -1 }).populate({
 			path: 'author',
 			select:
 				'name avatarUrl',
 		})
-		const filteredPosts = posts.slice(posts.length - (limit || 0))
-		res.json({ message: `norm :))`, posts: filteredPosts })
+		//const filteredPosts = posts.slice(posts.length - (limit || 0))
+		res.json({ message: `norm`, posts })
 
 	} catch (e) {
 		res.status(200).json({ message: `error ${e}` })

@@ -9,10 +9,10 @@ import { AuthContext } from "../../AuthContext"
 import { Link } from "react-router-dom"
 const Header = () => {
 	const { currentUser, logout } = useContext(AuthContext)
-
+	//useSearchParams
 	return (
 		<div className="header">
-			<Link to="/"><img src={Logo} alt="logo" className="header__logo"></img></Link>
+			<Link to="/posts"><img src={Logo} alt="logo" className="header__logo"></img></Link>
 
 			<ul className="header__menu">
 				<li className="header__search">
