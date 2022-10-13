@@ -4,20 +4,27 @@ import search from "../../assets/search_icon.jpg"
 import notification from "../../assets/notification.png"
 import avatar from "../../assets/avatar_icon.png"
 import { Menu, MenuItem } from "../Menu/Menu"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { AuthContext } from "../../AuthContext"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 const Header = () => {
 	const { currentUser, logout } = useContext(AuthContext)
-	//useSearchParams
+	const [searchInput, setSearchInput] = useState("");
+	const navigate = useNavigate();
+	function searchHadnler() {
+		if (!searchInput) {
+			return
+		}
+		navigate(`/posts?search=${searchInput}`)
+	}
 	return (
 		<div className="header">
 			<Link to="/posts"><img src={Logo} alt="logo" className="header__logo"></img></Link>
 
 			<ul className="header__menu">
 				<li className="header__search">
-					<input type="text" name="" placeholder="Search"></input>
-					<button>
+					<input value={searchInput} onChange={e => { setSearchInput(e.target.value) }} type="text" name="" placeholder="Search"></input>
+					<button onClick={searchHadnler}>
 						<img src={search} class="material-icons"></img>
 					</button>
 				</li>
@@ -39,7 +46,7 @@ const Header = () => {
 							<img src={currentUser?.avatarUrl || avatar}></img>
 							<Link to={`/user/${currentUser._id}`}><MenuItem>Профиль</MenuItem></Link>
 							<Link to="/create-post"><MenuItem>Написать блог</MenuItem></Link>
-							<MenuItem onClick ={logout}>Выйти</MenuItem>
+							<MenuItem onClick={logout}>Выйти</MenuItem>
 						</Menu>
 					</> : <>
 						<Menu>

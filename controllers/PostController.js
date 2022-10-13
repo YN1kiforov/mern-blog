@@ -2,11 +2,16 @@ const Post = require("../models/Post");
 
 exports.getAll = async (req, res) => {
 	try {
-		//Post.createIndex({ title: "text" })
+		const { limit, category, search } = req.query
 
-		const { limit, category, sessarch } = req.query
-		// $text: { $search: "*" }
-		const posts = await Post.find().limit(limit || 3).sort({ 'createdAt': -1 }).populate({
+		let findParameter = {};
+		if (category && (category !== "null")) {
+			findParameter = { tags: category }
+		}
+		if (search && (search !== "null")) {
+			findParameter = { $text: { $search: search } }
+		}
+		const posts = await Post.find(findParameter).limit(limit || 3).sort({ 'createdAt': -1 }).populate({
 			path: 'author',
 			select:
 				'name avatarUrl',

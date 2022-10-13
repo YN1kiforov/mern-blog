@@ -2,15 +2,16 @@ import "./Posts.scss"
 import Post from "../../components/Post/Post"
 import { useState, useEffect } from "react"
 import axios from "../../axios"
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation, } from "react-router-dom";
 const Posts = () => {
 	const [posts, setPosts] = useState(null);
-	let [searchParams, setSearchParams] = useSearchParams();
+	const [searchParams, setSearchParams] = useSearchParams();
+	const location = useLocation()
 
 	useEffect(() => {
 		(async () => {
 			try {
-				let { data } = await axios.get(`/getAll?limit=10&category=${searchParams.get("category")}&search=${searchParams.get("search")}`)
+				let { data } = await axios.get(`/getAll?limit=8&category=${searchParams.get("category")}&search=${searchParams.get("search")}`)
 				setPosts(data.posts)
 			} catch (error) {
 				console.log(error)
@@ -18,7 +19,7 @@ const Posts = () => {
 
 		})()
 
-	}, []);
+	}, [location]);
 	return (
 		<div className="posts">
 			<ul className="home__list">
