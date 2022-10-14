@@ -52,8 +52,8 @@ exports.postPost = async (req, res) => {
 }
 exports.patchPost = async (req, res) => {
 	try {
-		const { title, id } = req.body
-		await Post.updateOne({ _id: id }, { $set: { title } })
+		const { postId, title, body } = req.body
+		await Post.updateOne({ _id: postId }, { $set: { title, body } })
 		res.json({ message: 'norm' })
 	} catch (e) {
 		res.status(200).json({ message: `error ${e}` })
@@ -61,7 +61,8 @@ exports.patchPost = async (req, res) => {
 }
 exports.deletePost = async (req, res) => {
 	try {
-		const { id } = req.body;
+		const { id } = req.query;
+		console.log(id)
 		await Post.deleteOne({ _id: id })
 		res.json({ message: 'norm' })
 	} catch (e) {

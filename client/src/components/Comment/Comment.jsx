@@ -1,9 +1,5 @@
 import "./Comment.scss"
 import Avatar from "../../assets/avatar_icon.png"
-import Edit from "../../assets/edit.png"
-import Settings from "../../assets/settings_icon.png"
-
-import axios from "../../axios"
 import { dataFormatter } from "../../dateFormatter";
 import { AuthContext } from "../../AuthContext"
 import { useContext, useState } from "react"
@@ -16,8 +12,7 @@ const Comment = (props) => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [editInput, setEditInput] = useState(props.body);
 
-	const isYourComment = true //currentUser._id == props.author._id
-	// onClick={() => { props.edit(props.id) }}
+	const isYourComment = currentUser._id == props.author._id
 	return (
 		<div className="comment">
 			<img src={Avatar} alt="" />
