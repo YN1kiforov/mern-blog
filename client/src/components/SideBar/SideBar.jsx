@@ -5,6 +5,27 @@ import { useState, useEffect } from "react"
 import axios from "../../axios"
 
 const SideBar = () => {
+	const tags = [
+		{
+			name: "Путешествия",
+			link: "puteshestviya",
+
+		},
+		{
+			name: "еда",
+			link: "eda",
+
+		},
+		{
+			name: "Жизнь",
+			link: "jizn",
+
+		},
+		{
+			name: "Программирование",
+			link: "programmirovanie",
+		},
+	]
 	const [posts, setPosts] = useState(null);
 	useEffect(() => {
 		(async () => {
@@ -36,8 +57,8 @@ const SideBar = () => {
 				<li className="side-bar__tags">
 					Тэги
 					<ul className="side-bar__list-tags">
-						{[1, 2, 3, 4].map(tag => {
-							return <Tag />
+						{tags.map(tag => {
+							return <Tag link={tag.link} name={tag.name} />
 						})}
 					</ul>
 				</li>

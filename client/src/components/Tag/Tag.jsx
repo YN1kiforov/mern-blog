@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import "./Tag.scss"
 
+const Footer = (props) => {
 
-const Footer = () => {
 	return (
-		<li className="tag">Путешествие</li>
+		<Link to={`/posts?category=${props.link}`}><li className="tag">{props.name}</li></Link>
 	);
 }
 export default Footer;

@@ -3,7 +3,6 @@ const Post = require("../models/Post");
 exports.getAll = async (req, res) => {
 	try {
 		const { limit, category, search } = req.query
-
 		let findParameter = {};
 		if (category && (category !== "null")) {
 			findParameter = { tags: category }
@@ -11,6 +10,7 @@ exports.getAll = async (req, res) => {
 		if (search && (search !== "null")) {
 			findParameter = { $text: { $search: search } }
 		}
+		
 		const posts = await Post.find(findParameter).limit(limit || 3).sort({ 'createdAt': -1 }).populate({
 			path: 'author',
 			select:

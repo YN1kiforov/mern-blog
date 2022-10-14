@@ -7,6 +7,7 @@ const PostSchema = new Schema({
   body: String,
   viewsCount: { type: Number, default: 0 },
   commentsCount: { type: Number, default: 0 },
+  tags:  { type: [String], default: []},
   comments: [{ body: String, date: Date, author: { type: Schema.Types.ObjectId, ref: 'BlogUser', } }],
 }, { timestamps: true });
 

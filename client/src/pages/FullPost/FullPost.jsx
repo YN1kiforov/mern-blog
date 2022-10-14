@@ -13,6 +13,7 @@ const FullPost = () => {
 	const { currentUser } = useContext(AuthContext)
 	const location = useLocation()
 	const postId = location.pathname.split('/')[2];
+	
 	const [post, setPost] = useState(null);
 	const [commentValue, setCommentValue] = useState("");
 	const [comments, setComments] = useState(null);
