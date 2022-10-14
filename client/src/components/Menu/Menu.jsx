@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./Menu.scss"
 export const Menu = (props) => {
-	console.log(props.children)
 	const [menuActive, setMenuActive] = useState(false);
 	const listItem = []
 	// function windowCloseMenu() {

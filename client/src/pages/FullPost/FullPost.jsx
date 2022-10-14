@@ -13,7 +13,7 @@ const FullPost = () => {
 	const { currentUser } = useContext(AuthContext)
 	const location = useLocation()
 	const postId = location.pathname.split('/')[2];
-	
+
 	const [post, setPost] = useState(null);
 	const [commentValue, setCommentValue] = useState("");
 	const [comments, setComments] = useState(null);
@@ -30,11 +30,32 @@ const FullPost = () => {
 		})()
 
 	}, [postId]);
+
+	async function deleteComment(id) {
+		try {
+			await axios.delete(`/comment?id=${id}`)
+			setComments(prev => prev.filter(i => i._id != id))
+			setCommentValue("")
+		} catch (error) {
+
+		}
+	}
+	async function editComment(id, body) {
+		try {
+			await axios.patch(`/comment?id=${id}`,{id,body})
+
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	async function sendComment() {
 		try {
-			let { data } = await axios.post("/comment", { postId, author: currentUser._id, body: commentValue })
+			if (commentValue) {
+				let { data } = await axios.post("/comment", { postId, author: currentUser._id, body: commentValue })
+				setComments((prev) => [data.comment, ...prev])
+			}
 
-			setComments((prev) => [data.comment, ...prev])
 		} catch (error) {
 			console.log(error)
 		}
@@ -73,7 +94,7 @@ const FullPost = () => {
 					{comments ? <ul className="comments__list">
 						<h4>Коментарии</h4>
 						{comments.map(comment => {
-							return <li><Comment body={comment.body} date={comment.createdAt} author={comment.author} /></li>
+							return <li><Comment edit={editComment} delete={deleteComment} id={comment._id} body={comment.body} date={comment.createdAt} author={comment.author} /></li>
 						})}
 					</ul> : <div className=''>Коментарии не найдены</div>}
 				</li>

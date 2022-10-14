@@ -36,6 +36,7 @@ exports.postComment = async (req, res) => {
 exports.patchComment = async (req, res) => {
 	try {
 		const { body, id } = req.body
+		console.log(body, id)
 		await Comment.updateOne({ _id: id }, { $set: { body } })
 		res.json({ message: 'norm' })
 	} catch (e) {
@@ -44,7 +45,7 @@ exports.patchComment = async (req, res) => {
 }
 exports.deleteComment = async (req, res) => {
 	try {
-		const { id } = req.body;
+		const { id } = req.query;
 		await Comment.deleteOne({ _id: id })
 		res.json({ message: 'norm' })
 	} catch (e) {

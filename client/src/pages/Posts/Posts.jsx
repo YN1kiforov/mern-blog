@@ -16,9 +16,7 @@ const Posts = () => {
 			} catch (error) {
 				console.log(error)
 			}
-
 		})()
-
 	}, [location]);
 	return (
 		<div className="posts">

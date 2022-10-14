@@ -9,17 +9,14 @@ const SideBar = () => {
 		{
 			name: "Путешествия",
 			link: "puteshestviya",
-
 		},
 		{
 			name: "еда",
 			link: "eda",
-
 		},
 		{
 			name: "Жизнь",
 			link: "jizn",
-
 		},
 		{
 			name: "Программирование",
