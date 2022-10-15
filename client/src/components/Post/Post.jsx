@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 import { dataFormatter } from "../../dateFormatter"
 
 const Post = (props) => {
-
+	const author = props.author || {};
 	return (
 		<div className="post">
 			<img src={Photo}></img>
@@ -28,8 +28,8 @@ const Post = (props) => {
 			<div className='post__bottom'>
 				<Link to={`/post/${props.link}`}><button className=''>Читать далее</button></Link>
 				<div className="post__author">
-					<img src={props.authorAvatar || Avatar} alt="" />
-					<span>{props.authorName}</span>
+					<img src={author.avatarUrl || Avatar} alt="" />
+					<span>{author.name}</span>
 				</div>
 			</div>
 		</div>

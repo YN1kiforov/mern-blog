@@ -12,6 +12,7 @@ import axios from "../../axios"
 import Editor from "../../components/Editor/MyEditor";
 import { useNavigate } from "react-router-dom";
 import { dataFormatter } from "../../dateFormatter"
+
 const FullPost = () => {
 	const { currentUser } = useContext(AuthContext)
 	const location = useLocation()
@@ -22,7 +23,7 @@ const FullPost = () => {
 	const [comments, setComments] = useState(null);
 	const [body, setBody] = useState("");
 	const [title, setTitle] = useState("");
-	const isYourPost = currentUser._id == post?.author._id
+	const isYourPost = currentUser?._id == post?.author._id
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -97,7 +98,7 @@ const FullPost = () => {
 							</div>
 						</>
 						: <>
-							<div className='post__options'>
+							{isYourPost ? <div className='post__options'>
 								<Menu >
 									<div className='post__options-icon'>
 										<span></span>
@@ -113,7 +114,7 @@ const FullPost = () => {
 										</button>
 									</MenuItem>
 								</Menu>
-							</div>
+							</div>: <></>}
 							<img src={Photo} alt="" />
 							<h2>{post.title}</h2>
 							<ul className='post__info'>

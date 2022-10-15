@@ -1,7 +1,49 @@
 .author {
 	background-color: #fff;
+	position: relative;
 	padding: 50px 60px;
 	text-align: center;
+	&__options {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+	}
+	&__options-icon {
+		position: relative;
+		height: 20px;
+		padding-top: 10px;
+		display: block;
+		text-align: center;
+		background-color: #fff;
+		width: 20px;
+		& span,
+		&::after,
+		&::before {
+			position: absolute;
+			display: block;
+			height: 4px;
+			background-color: rgb(75, 74, 74);
+			border-radius: 50%;
+			width: 4px;
+			left: 50%;
+		}
+		&::after,
+		&::before {
+			content: "";
+			transform: translateX(-50%);
+		}
+		&::after {
+			top: 0;
+		}
+		&::before {
+			bottom: 0px;
+		}
+		& span {
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+
 	&__info {
 		display: flex;
 		align-items: center;

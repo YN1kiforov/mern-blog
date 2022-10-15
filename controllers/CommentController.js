@@ -36,7 +36,6 @@ exports.postComment = async (req, res) => {
 exports.patchComment = async (req, res) => {
 	try {
 		const { body, id } = req.body
-		console.log(body, id)
 		await Comment.updateOne({ _id: id }, { $set: { body } })
 		res.json({ message: 'norm' })
 	} catch (e) {

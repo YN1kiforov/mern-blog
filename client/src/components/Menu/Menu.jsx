@@ -11,12 +11,12 @@ export const Menu = (props) => {
 	// }
 	if (menuActive) {
 		setTimeout(() => {
-			const node = document.querySelector('.list-container')
-			window.addEventListener("click", (e) => {
-				//if (e.target.contains(node)) {
-				setMenuActive(false)
-				//}
-			}, { once: true })
+			//const node = document.querySelector('.list-container')
+			// window.addEventListener("click", (e) => {
+			// 	//if (e.target.contains(node)) {
+			// 	setMenuActive(false)
+			// 	//}
+			// }, { once: true })
 		})
 	}
 	const body = []

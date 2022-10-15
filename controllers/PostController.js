@@ -2,15 +2,16 @@ const Post = require("../models/Post");
 
 exports.getAll = async (req, res) => {
 	try {
-		const { limit, category, search } = req.query
+		const { limit, category, search, user } = req.query
 		let findParameter = {};
 		if (category && (category !== "null")) {
 			findParameter = { tags: category }
-		}
-		if (search && (search !== "null")) {
+		} else if (search && (search !== "null")) {
 			findParameter = { $text: { $search: search } }
+		} else if (user && (user !== "null")) {
+			findParameter = { author: user }
 		}
-		
+
 		const posts = await Post.find(findParameter).limit(limit || 3).sort({ 'createdAt': -1 }).populate({
 			path: 'author',
 			select:
@@ -26,7 +27,7 @@ exports.getAll = async (req, res) => {
 exports.getPost = async (req, res) => {
 	try {
 
-		const postId = req.query.postId
+		const { postId } = req.query
 		const post = await Post.findById(postId).populate({
 			path: 'author',
 			select:
@@ -62,7 +63,6 @@ exports.patchPost = async (req, res) => {
 exports.deletePost = async (req, res) => {
 	try {
 		const { id } = req.query;
-		console.log(id)
 		await Post.deleteOne({ _id: id })
 		res.json({ message: 'norm' })
 	} catch (e) {

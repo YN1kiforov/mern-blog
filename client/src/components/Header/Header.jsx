@@ -46,11 +46,11 @@ const Header = () => {
 							<img src={currentUser?.avatarUrl || avatar}></img>
 							<Link to={`/user/${currentUser._id}`}><MenuItem>Профиль</MenuItem></Link>
 							<Link to="/create-post"><MenuItem>Написать блог</MenuItem></Link>
-							<MenuItem onClick={logout}>Выйти</MenuItem>
+							<MenuItem ><button onClick={logout} className=''>Выйти</button></MenuItem>
 						</Menu>
 					</> : <>
 						<Menu>
-							<img src={avatar}></img>
+							<img onClick={()=>console.log('dsadsa')} src={avatar}></img>
 							<Link to="/login"><MenuItem>Войти</MenuItem></Link>
 							<Link to="/register"><MenuItem>Зарегистрироваться</MenuItem></Link>
 						</Menu>
