@@ -31,6 +31,7 @@ const Home = () => {
 							body={post.body}
 							link={post._id}
 							date={post.createdAt}
+							imageUrl={post.imageUrl}
 							className="home__post">
 						</Post>
 					</li>

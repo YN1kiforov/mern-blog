@@ -45,7 +45,7 @@ const User = () => {
 							body={post.body}
 							link={post._id}
 							date={post.createdAt}
-
+							imageUrl={post.imageUrl}
 						/>
 					</li>
 				})

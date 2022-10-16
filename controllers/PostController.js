@@ -42,8 +42,8 @@ exports.getPost = async (req, res) => {
 }
 exports.postPost = async (req, res) => {
 	try {
-		const { title, author, body } = req.body
-		const post = new Post({ title, author, body })
+		const { title, author, body, imageUrl, tags } = req.body
+		const post = new Post({ title, author, body, imageUrl, tags })
 		await post.save()
 		res.json({ message: 'norm' })
 
@@ -53,8 +53,8 @@ exports.postPost = async (req, res) => {
 }
 exports.patchPost = async (req, res) => {
 	try {
-		const { postId, title, body } = req.body
-		await Post.updateOne({ _id: postId }, { $set: { title, body } })
+		const { postId, title, body, imageUrl } = req.body
+		await Post.updateOne({ _id: postId }, { $set: { title, body, imageUrl } })
 		res.json({ message: 'norm' })
 	} catch (e) {
 		res.status(200).json({ message: `error ${e}` })

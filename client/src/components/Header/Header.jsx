@@ -19,7 +19,7 @@ const Header = () => {
 	}
 	return (
 		<div className="header">
-			<Link to="/posts"><img src={Logo} alt="logo" className="header__logo"></img></Link>
+			<Link to="/"><img src={Logo} alt="logo" className="header__logo"></img></Link>
 
 			<ul className="header__menu">
 				<li className="header__search">

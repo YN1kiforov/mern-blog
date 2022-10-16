@@ -115,7 +115,8 @@ const FullPost = () => {
 									</MenuItem>
 								</Menu>
 							</div>: <></>}
-							<img src={Photo} alt="" />
+							{console.log(post)}
+							<img src={`http://localhost:3001${post.imageUrl}`} alt="" />
 							<h2>{post.title}</h2>
 							<ul className='post__info'>
 

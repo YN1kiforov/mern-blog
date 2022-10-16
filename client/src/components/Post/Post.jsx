@@ -10,7 +10,8 @@ const Post = (props) => {
 	const author = props.author || {};
 	return (
 		<div className="post">
-			<img src={Photo}></img>
+
+			<img src={`http://localhost:3001${props.imageUrl}`}></img>
 			<h2>{props.title}</h2>
 			<ul className='post__info'>
 				<li className="post__date">{dataFormatter(props.date)}</li>

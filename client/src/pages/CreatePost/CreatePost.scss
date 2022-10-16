@@ -1,0 +1,11 @@
+.create-post {
+	&__preview {
+		margin: 20px 0px;
+		& img {
+			max-height: 200px;
+		}
+	}
+	&__button{
+		margin-top: 40px;
+	}
+}
