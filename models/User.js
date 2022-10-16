@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
@@ -21,12 +20,13 @@ const UserSchema = new Schema({
 		type: String,
 	},
 	subscribersList: {
-		type: [ObjectId],
+		type: [Schema.Types.ObjectId],
 		default: [],
 	},
 	notificationsList: {
-		type: [ObjectId],
+		type: [Schema.Types.ObjectId],
 		default: [],
+		ref: "Post",
 	},
 	avatarUrl: String,
 },

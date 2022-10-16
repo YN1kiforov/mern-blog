@@ -24,11 +24,12 @@ const CreatePost = () => {
 	const inputFileRef = useRef(null);
 	const [title, setTitle] = useState("");
 	const submitHandler = async () => {
-		if (body & title & imageUrl) {
-			const tags = optionSelected.map(item => item.label)
+		if (body && title && imageUrl) {
+			const tags = optionSelected.map(item => item.value)
 			await axios.post('/post', { title, author: currentUser._id, body, imageUrl, tags })
 			navigate("/")
 		} else {
+			console.log(body, title, imageUrl)
 			enqueueSnackbar('Заполните все поля', { autoHideDuration: 1000, variant: 'error', })
 		}
 	}

@@ -16,10 +16,10 @@ const AuthorBlock = (props) => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [aboutInput, setAboutInput] = useState();
 	const [nameInput, setNameInput] = useState();
-	const [isSubscribed, setIsSubscribed] = useState(author.subscribersList ? author.subscribersList.includes(currentUser._id) : false);
+	const [isSubscribed, setIsSubscribed] = useState(author.subscribersList ? author.subscribersList.includes(currentUser?._id) : false);
 	async function editUserData() {
 		try {
-			await axios.patch(`/user`, { id: currentUser._id, about: aboutInput, name: nameInput })
+			await axios.patch(`/user`, { id: currentUser?._id, about: aboutInput, name: nameInput })
 			author.name = nameInput;
 			author.about = aboutInput;
 			setIsEditing(false)
@@ -29,7 +29,7 @@ const AuthorBlock = (props) => {
 	}
 	async function subscribeUser() {
 		try {
-			await axios.post('/subscribe', { id: currentUser?._id, receiverId: author._id })
+			await axios.post('/subscribe', { id: currentUser?._id, receiverId: author?._id })
 			setIsSubscribed(true)
 		} catch (error) {
 			console.log(error)
@@ -37,7 +37,7 @@ const AuthorBlock = (props) => {
 	}
 	async function unSubscribeUser() {
 		try {
-			await axios.post('/unsubscribe', { id: currentUser?._id, receiverId: author._id })
+			await axios.post('/unsubscribe', { id: currentUser?._id, receiverId: author?._id })
 			setIsSubscribed(false)
 		} catch (error) {
 			console.log(error)
@@ -45,7 +45,7 @@ const AuthorBlock = (props) => {
 	}
 	async function deleteUser() {
 		try {
-			await axios.delete(`/user?id=${currentUser._id}`)
+			await axios.delete(`/user?id=${currentUser?._id}`)
 			navigate('/')
 			logout()
 		} catch (error) {
@@ -78,7 +78,7 @@ const AuthorBlock = (props) => {
 
 			<div className='author__info'>
 				<img src={Avatar} alt="" />
-				{isEditing ? <input value={nameInput} onChange={e => setNameInput(e.target.value)} /> : <Link to={`/user/${author._id}`}><span className="author__name">{author?.name}</span></Link>}
+				{isEditing ? <input value={nameInput} onChange={e => setNameInput(e.target.value)} /> : <Link to={`/user/${author?._id}`}><span className="author__name">{author?.name}</span></Link>}
 			</div>
 
 			{isEditing ? <input value={aboutInput} onChange={e => setAboutInput(e.target.value)} /> : <div className='author__about'>{author?.about}</div>}

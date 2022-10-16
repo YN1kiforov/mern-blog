@@ -47,10 +47,11 @@ exports.postPost = async (req, res) => {
 		const post = await new Post({ title, author, body, imageUrl, tags })
 		await post.save();
 		(async function sendNotifications() {
-			const author = await User.findById(author)
-			author.subscribersList.forEach(async userId => {
-				const user = await User.findById(user);
-				newNotificationsList = [post._id, ...user.notificationsList].length = 10
+			const Author = await User.findById(author)
+			Author.subscribersList.forEach(async userId => {
+				const user = await User.findById(userId);
+				//.length = 10
+				newNotificationsList = [post._id, ...user.notificationsList]
 				await User.updateOne({ _id: userId }, { $set: { notificationsList: newNotificationsList } })
 			})
 		})()

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 import { dataFormatter } from "../../dateFormatter"
 
 const Post = (props) => {
+	console.log(props.body.slice(0, 10))
 	const author = props.author || {};
 	return (
 		<div className="post">
@@ -28,10 +29,12 @@ const Post = (props) => {
 			<div dangerouslySetInnerHTML={{ __html: props.body }} className="post__text" />
 			<div className='post__bottom'>
 				<Link to={`/post/${props.link}`}><button className=''>Читать далее</button></Link>
-				<div className="post__author">
-					<img src={author.avatarUrl || Avatar} alt="" />
-					<span>{author.name}</span>
-				</div>
+				<Link to={`/user/${author?._id}`}>
+					<div className="post__author">
+						<img src={author.avatarUrl || Avatar} alt="" />
+						<span>{author.name}</span>
+					</div>
+				</Link>
 			</div>
 		</div>
 	);

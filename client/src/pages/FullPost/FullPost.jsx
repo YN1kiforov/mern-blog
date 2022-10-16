@@ -1,5 +1,4 @@
 import "./FullPost.scss"
-import Photo from "../../assets/random_photo.jpg"
 import Comments_icon from "../../assets/comment_icon.png"
 import Views_icon from "../../assets/views_icon.webp"
 import AuthorBlock from "../../components/AuthorBlock/AuthorBlock"
@@ -36,7 +35,6 @@ const FullPost = () => {
 			setBody(posts.data.post.body)
 			setTitle(posts.data.post.title)
 			setComments(comments.data.comments)
-			console.log(post?.author)
 
 		})()
 

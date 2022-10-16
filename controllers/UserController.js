@@ -54,8 +54,13 @@ exports.login = async (req, res) => {
 exports.getUser = async (req, res) => {
 	try {
 		const { id } = req.query
-		const user = await User.findById(id)
+		//const user = await User.findById(id)
 
+		const user = await User.findById(id).populate({
+			path: 'notificationsList',
+			select:
+				'title',
+		})
 		res.json({ message: `norm post`, user })
 
 	} catch (e) {

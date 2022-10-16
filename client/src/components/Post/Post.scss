@@ -2,9 +2,14 @@
 	color: rgb(52, 46, 46);
 	background-color: #fff;
 	padding: 50px 60px;
+	box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
 	& > img {
 		width: 700px;
 		height: 400px;
+	}
+	&__text {
+		max-height: 100px;
+		overflow: hidden;
 	}
 	& > h2 {
 		font-size: 26px;
@@ -15,14 +20,14 @@
 	& > h3 {
 		font-weight: 400;
 	}
-	&__info{
+	&__info {
 		text-align: center;
 		margin: 0 auto;
 		justify-content: center;
 		margin-top: 10px;
 		display: flex;
 		align-items: center;
-		&>li{
+		& > li {
 			margin-right: 20px;
 		}
 	}
@@ -31,13 +36,13 @@
 		height: 17px;
 		margin-right: 6px;
 	}
-	&__bottom{
+	&__bottom {
+		margin-top: 30px;
 		display: flex;
 		justify-content: space-between;
-
 	}
-	&__author{
-		img{
+	&__author {
+		img {
 			width: 35px;
 			height: 35px;
 			margin-right: 7px;

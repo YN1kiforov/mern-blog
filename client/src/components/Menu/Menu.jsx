@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./Menu.scss"
+import axios from "../../axios"
+
 export const Menu = (props) => {
+
 	const [menuActive, setMenuActive] = useState(false);
 	const listItem = []
 	// function windowCloseMenu() {
@@ -21,7 +24,7 @@ export const Menu = (props) => {
 	}
 	const body = []
 	props.children.forEach(element => {
-		(element.type.name === "MenuItem" || element.props.to) ? listItem.push(element) : body.push(element)
+		(Array.isArray(element) || element?.type?.name === "MenuItem" || element?.props?.to) ? listItem.push(element) : body.push(element)
 	});
 	return (
 		<div className={menuActive ? `list-container active` : `list-container`}>
