@@ -36,6 +36,8 @@ const FullPost = () => {
 			setBody(posts.data.post.body)
 			setTitle(posts.data.post.title)
 			setComments(comments.data.comments)
+			console.log(post?.author)
+
 		})()
 
 	}, [postId]);
@@ -114,8 +116,7 @@ const FullPost = () => {
 										</button>
 									</MenuItem>
 								</Menu>
-							</div>: <></>}
-							{console.log(post)}
+							</div> : <></>}
 							<img src={`http://localhost:3001${post.imageUrl}`} alt="" />
 							<h2>{post.title}</h2>
 							<ul className='post__info'>

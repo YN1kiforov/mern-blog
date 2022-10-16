@@ -1,3 +1,4 @@
+const User = require("../models/User");
 const Post = require("../models/Post");
 
 exports.getAll = async (req, res) => {
@@ -31,7 +32,7 @@ exports.getPost = async (req, res) => {
 		const post = await Post.findById(postId).populate({
 			path: 'author',
 			select:
-				'name avatarUrl',
+				'name subscribersList avatarUrl',
 		})
 
 		res.json({ message: `norm post`, post })
@@ -43,8 +44,16 @@ exports.getPost = async (req, res) => {
 exports.postPost = async (req, res) => {
 	try {
 		const { title, author, body, imageUrl, tags } = req.body
-		const post = new Post({ title, author, body, imageUrl, tags })
-		await post.save()
+		const post = await new Post({ title, author, body, imageUrl, tags })
+		await post.save();
+		(async function sendNotifications() {
+			const author = await User.findById(author)
+			author.subscribersList.forEach(async userId => {
+				const user = await User.findById(user);
+				newNotificationsList = [post._id, ...user.notificationsList].length = 10
+				await User.updateOne({ _id: userId }, { $set: { notificationsList: newNotificationsList } })
+			})
+		})()
 		res.json({ message: 'norm' })
 
 	} catch (e) {

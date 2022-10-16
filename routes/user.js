@@ -4,6 +4,7 @@ const User = require('../controllers/UserController')
 
 router.post('/register', User.register)
 router.post('/subscribe', User.subscribe)
+router.post('/unsubscribe', User.unsubscribe)
 router.post('/login', User.login)
 
 router.get('/user', User.getUser)

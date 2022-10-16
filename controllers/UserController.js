@@ -21,6 +21,17 @@ exports.subscribe = async (req, res) => {
 		res.status(500).json({ message: `error ${e}` })
 	}
 }
+exports.unsubscribe = async (req, res) => {
+	try {
+		const { id, receiverId } = req.body
+		const user = await User.findById(receiverId)
+		const newSubscribersList = user.subscribersList.filter(userId => userId != id)
+		await User.updateOne({ _id: receiverId }, { $set: { subscribersList: newSubscribersList } })
+		res.status(200).json({ message: 'vse norm' })
+	} catch (e) {
+		res.status(500).json({ message: `error ${e}` })
+	}
+}
 exports.login = async (req, res) => {
 	try {
 		const { email, password } = req.body
