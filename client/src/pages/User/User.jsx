@@ -34,8 +34,8 @@ const User = () => {
 			<AuthorBlock author={user} options={true} />
 			<ul className='user__posts-list'>
 				<h1>Последние статьи автора</h1>
-				{posts ? posts.map(post => {
-					return <li>
+				{posts ? posts.map((post,index) => {
+					return <li key={`${post.title}_${index}`}>
 						<Post
 							title={post.title}
 							viewsCount={post.viewsCount}

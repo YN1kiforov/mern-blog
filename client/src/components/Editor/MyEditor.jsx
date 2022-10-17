@@ -1,12 +1,14 @@
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./MyEditor.scss"
+import Input from "../../components/Input/Input"
+
 const Editor = (props) => {
 	return (
 		<div className="editor">
 			<div className="editor__content">
 				<label className="">Название статьи:</label>
-				<input
+				<Input
 					type="text"
 					placeholder="Title"
 					value={props.title}

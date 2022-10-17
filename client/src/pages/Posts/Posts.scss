@@ -1,0 +1,17 @@
+.posts {
+	position: relative;
+	&__list > li {
+		margin-bottom: 70px;
+		&:last-of-type{
+			text-align: center;
+		}
+	}
+	&__helper{
+		color: rgb(109, 108, 108);
+		position: absolute;
+		font-size: 24px;
+		transform: translateX(-20%);
+		top: 20%;
+		left: 30%;
+	}
+}

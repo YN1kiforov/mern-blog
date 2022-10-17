@@ -20,23 +20,25 @@ const Posts = () => {
 	}, [location]);
 	return (
 		<div className="posts">
-			<ul className="home__list">
-				{posts ? posts.map(post => {
-					return <li>
-						<Post
-							title={post.title}
-							viewsCount={post.viewsCount}
-							commentsCount={post.commentsCount}
-							author={post.author}
-							body={post.body}
-							link={post._id}
-							date={post.createdAt}
-							imageUrl={post.imageUrl}
-
-							className="home__post">
-						</Post>
-					</li>
-				}) : <div>Не удалось найти данные</div>}
+			<ul className="posts__list">
+				{posts ? posts.length
+					? posts.map((post, index) => {
+						return <li key={`${post.title}_${index}`}>
+							<Post
+								title={post.title}
+								viewsCount={post.viewsCount}
+								commentsCount={post.commentsCount}
+								author={post.author}
+								body={post.body}
+								link={post._id}
+								date={post.createdAt}
+								imageUrl={post.imageUrl}
+								className="home__post">
+							</Post>
+						</li>
+					})
+					: <div className='posts__helper'> Нет постов такой категории. Станьте первым :) </div>
+					: <div className='posts__helper'>Не удалось найти посты :(</div>}
 			</ul>
 		</div>
 	);

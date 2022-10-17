@@ -50,8 +50,8 @@ exports.postPost = async (req, res) => {
 			const Author = await User.findById(author)
 			Author.subscribersList.forEach(async userId => {
 				const user = await User.findById(userId);
-				//.length = 10
 				newNotificationsList = [post._id, ...user.notificationsList]
+				newNotificationsList.length = 10
 				await User.updateOne({ _id: userId }, { $set: { notificationsList: newNotificationsList } })
 			})
 		})()
@@ -63,8 +63,8 @@ exports.postPost = async (req, res) => {
 }
 exports.patchPost = async (req, res) => {
 	try {
-		const { postId, title, body, imageUrl } = req.body
-		await Post.updateOne({ _id: postId }, { $set: { title, body, imageUrl } })
+		const { postId, title, body, imageUrl, tags } = req.body
+		await Post.updateOne({ _id: postId }, { $set: { title, body, imageUrl, tags } })
 		res.json({ message: 'norm' })
 	} catch (e) {
 		res.status(200).json({ message: `error ${e}` })

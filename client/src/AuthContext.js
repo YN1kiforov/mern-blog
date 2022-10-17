@@ -12,7 +12,13 @@ export const AuthContextProvider = ({ children }) => {
 	}, [currentUser]);
 
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-
+	const tags = [
+		{ value: "puteshestviya", label: "Путешествия", color: "rgb(177, 2, 177)" },
+		{ value: "eda", label: "Еда", color: "orange" },
+		{ value: "jizn", label: "Жизнь", color: "green" },
+		{ value: "programmirovanie", label: "Программирование", color: "blue" },
+		{ value: "zdorovie", label: "Здоровье", color: "rgb(218, 218, 13)" },
+	]
 	const login = async (inputs) => {
 		try {
 			const res = await axios.post("/login", inputs);
@@ -44,7 +50,7 @@ export const AuthContextProvider = ({ children }) => {
 	};
 
 	return (
-		<AuthContext.Provider value={{ currentUser, login, logout, register, enqueueSnackbar }}>
+		<AuthContext.Provider value={{ currentUser, login, logout, register, enqueueSnackbar, tags }}>
 			{children}
 		</AuthContext.Provider>
 	);

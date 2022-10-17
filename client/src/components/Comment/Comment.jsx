@@ -4,6 +4,7 @@ import { dataFormatter } from "../../dateFormatter";
 import { AuthContext } from "../../AuthContext"
 import { useContext, useState } from "react"
 import { Menu, MenuItem } from "../../components/Menu/Menu"
+import Button from "../../components/Button/Button"
 
 
 const Comment = (props) => {
@@ -20,19 +21,17 @@ const Comment = (props) => {
 				<div className='comment__top'>
 					<h5 className="comment__name">{props.author?.name}</h5>
 					<span className="comment__date">{dataFormatter(props.date)}</span>
-
 				</div>
 				{isEditing
 					? <>
 						<input className='comment__text' value={editInput} onChange={e => { setEditInput(e.target.value) }}></input>
 						<div className='comment__edit-buttons'>
-							<button onClick={() => { setEditInput(props.body); setIsEditing(false) }}>Отмена</button>
-							<button onClick={() => { props.edit(props.id, editInput); setIsEditing(false); setCommentBody(editInput) }} className=''>Подтвертить</button>
+							<Button type="cancel" onClick={() => { setEditInput(props.body); setIsEditing(false) }}>Отмена</Button>
+							<Button type="save" onClick={() => { props.edit(props.id, editInput); setIsEditing(false); setCommentBody(editInput) }} className=''>Подтвертить</Button>
 						</div>
 					</>
 					: <>
 						<div className='comment__text'>{commentBody}</div>
-						<button className='comment__reply'>Ответить</button>
 					</>}
 			</div>
 			{(isYourComment && !isEditing)

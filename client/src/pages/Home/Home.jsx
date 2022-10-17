@@ -3,6 +3,8 @@ import Post from "../../components/Post/Post"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import axios from "../../axios"
+import Button from "../../components/Button/Button"
+
 const Home = () => {
 	const [posts, setPosts] = useState(null);
 
@@ -21,9 +23,10 @@ const Home = () => {
 	return (
 		<div className="home">
 			<ul className="home__list">
-				{posts ? posts.map(post => {
-					return <li>
+				{posts ? posts.map((post,index) => {
+					return <li key={`${post.title}_${index}`}>
 						<Post
+							
 							title={post.title}
 							viewsCount={post.viewsCount}
 							commentsCount={post.commentsCount}
@@ -37,7 +40,7 @@ const Home = () => {
 					</li>
 				}) : <div>Не удалось найти данные</div>}
 				<li>
-					<Link to="/posts"><button className=''>Смотреть все посты</button></Link>
+					<Link to="/posts"><Button>Смотреть все посты</Button></Link>
 				</li>
 
 

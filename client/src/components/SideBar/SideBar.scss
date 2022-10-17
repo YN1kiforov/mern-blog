@@ -11,9 +11,12 @@
 			}
 		}
 	}
-	&__list-tags {
-		li {
-			margin-right: 10px;
+	&__social{
+		img{
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+
 		}
 	}
 }

@@ -9,12 +9,25 @@
 			margin: 0px 0px 0px 0px;
 		}
 	}
+	&__tags {
+		margin-top: 30px;
+	}
 }
 .post {
 	&__options {
 		position: absolute;
 		top: 20px;
 		right: 20px;
+	}
+	&__buttons {
+		display: flex;
+		margin-top: 30px;
+		& button {
+			margin-right: 25px;
+			&:last-of-type {
+				margin: 0px 0px 0px 0px;
+			}
+		}
 	}
 	&__options-icon {
 		position: relative;

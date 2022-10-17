@@ -42,18 +42,20 @@ const Header = () => {
 
 			<ul className="header__menu">
 				<li className="header__search">
-					<input value={searchInput} onChange={e => { setSearchInput(e.target.value) }} type="text" name="" placeholder="Search"></input>
-					<button onClick={searchHandler}>
-						<img src={search} class="material-icons"></img>
-					</button>
+					<div className='header__search-container'>
+						<input value={searchInput} onChange={e => { setSearchInput(e.target.value) }} type="text" placeholder="Поиск"></input>
+						<button onClick={searchHandler}>
+							<img src={search} className="material-icons"></img>
+						</button>
+					</div>
 				</li>
 				{currentUser ? <>
 					<li className="header__notifications">
 						<Menu>
 							<img src={notification}></img>
 							{notifications
-								? (notifications.map(post => {
-									return <MenuItem><Link to={`/post/${post._id}`}>{post.title}</Link></MenuItem>
+								? (notifications.map((post,index) => {
+									return <MenuItem key={`${post.title}_${index}`} ><Link to={`/post/${post._id}`}>{post.title}</Link></MenuItem>
 								}))
 								: <MenuItem>Не удалось найти</MenuItem>
 							}
@@ -66,7 +68,7 @@ const Header = () => {
 							<img src={currentUser?.avatarUrl || avatar}></img>
 							<Link to={`/user/${currentUser._id}`}><MenuItem>Профиль</MenuItem></Link>
 							<Link to="/create-post"><MenuItem>Написать блог</MenuItem></Link>
-							<MenuItem ><button onClick={logout} className=''>Выйти</button></MenuItem>
+							<MenuItem onClick={logout}>Выйти</MenuItem>
 						</Menu>
 					</> : <>
 						<Menu>

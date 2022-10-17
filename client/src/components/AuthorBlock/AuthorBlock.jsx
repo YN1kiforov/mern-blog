@@ -6,6 +6,8 @@ import { AuthContext } from "../../AuthContext"
 import { Menu, MenuItem } from "../../components/Menu/Menu"
 import axios from "../../axios"
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button"
+import Input from "../Input/Input"
 
 
 const AuthorBlock = (props) => {
@@ -19,6 +21,9 @@ const AuthorBlock = (props) => {
 	const [isSubscribed, setIsSubscribed] = useState(author.subscribersList ? author.subscribersList.includes(currentUser?._id) : false);
 	async function editUserData() {
 		try {
+			if (!currentUser && aboutInput.length && nameInput) {
+				return
+			}
 			await axios.patch(`/user`, { id: currentUser?._id, about: aboutInput, name: nameInput })
 			author.name = nameInput;
 			author.about = aboutInput;
@@ -29,16 +34,21 @@ const AuthorBlock = (props) => {
 	}
 	async function subscribeUser() {
 		try {
-			await axios.post('/subscribe', { id: currentUser?._id, receiverId: author?._id })
-			setIsSubscribed(true)
+			if (currentUser) {
+				await axios.post('/subscribe', { id: currentUser?._id, receiverId: author?._id })
+				setIsSubscribed(true)
+			}
 		} catch (error) {
 			console.log(error)
 		}
 	}
 	async function unSubscribeUser() {
 		try {
-			await axios.post('/unsubscribe', { id: currentUser?._id, receiverId: author?._id })
-			setIsSubscribed(false)
+			if (currentUser) {
+				await axios.post('/unsubscribe', { id: currentUser?._id, receiverId: author?._id })
+				setIsSubscribed(false)
+			}
+
 		} catch (error) {
 			console.log(error)
 		}
@@ -62,36 +72,36 @@ const AuthorBlock = (props) => {
 						<div className='author__options-icon'>
 							<span></span>
 						</div>
-						<MenuItem>
-							<button onClick={() => { setIsEditing(true); setAboutInput(author.about); setNameInput(author.name) }} className='author__edit-icon'>
-								Редактировать
-							</button>
-						</MenuItem>
-						<MenuItem>
-							<button onClick={deleteUser} className='author__edit-icon'>
-								Удалить
-							</button>
-						</MenuItem>
+						<MenuItem onClick={() => { setIsEditing(true); setAboutInput(author.about); setNameInput(author.name) }}>Редактировать</MenuItem>
+						<MenuItem onClick={deleteUser}>Удалить</MenuItem>
 					</Menu>
 				</div>
 				: <></>}
 
 			<div className='author__info'>
 				<img src={Avatar} alt="" />
-				{isEditing ? <input value={nameInput} onChange={e => setNameInput(e.target.value)} /> : <Link to={`/user/${author?._id}`}><span className="author__name">{author?.name}</span></Link>}
+				{isEditing
+					? <>
+						<Input value={nameInput} onChange={e => setNameInput(e.target.value)} />
+						<Input value={aboutInput} onChange={e => setAboutInput(e.target.value)} />
+					</>
+					: <>
+						<Link to={`/user/${author?._id}`}>{author?.name}</Link>
+						<div className='author__about'>{author?.about}</div>
+					</>
+				}
 			</div>
 
-			{isEditing ? <input value={aboutInput} onChange={e => setAboutInput(e.target.value)} /> : <div className='author__about'>{author?.about}</div>}
 			{isYou ? <></> : (isSubscribed
-				? <button disabled={!currentUser} onClick={unSubscribeUser} className='author__sub'>Отписаться</button>
-				: <button disabled={!currentUser} onClick={subscribeUser} className='author__sub'>Подисаться</button>)
+				? <Button type="cancel" disabled={!currentUser} onClick={unSubscribeUser} className='author__sub'>Отписаться</Button>
+				: <Button type="save" disabled={!currentUser} onClick={subscribeUser} className='author__sub'>Подисаться</Button>)
 
 			}
 			{
 				isEditing ?
 					<div className='author__buttons'>
-						<button onClick={() => setIsEditing(false)} className=''>Отмена</button>
-						<button onClick={editUserData} className=''>Сохранить</button>
+						<Button type="cancel" onClick={() => setIsEditing(false)} >Отмена</Button>
+						<Button disabled={!(aboutInput.length && nameInput)} type="save" onClick={editUserData}>Сохранить</Button>
 					</div> : <></>
 			}
 

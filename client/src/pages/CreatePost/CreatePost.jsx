@@ -5,17 +5,11 @@ import axios from "../../axios"
 import { AuthContext } from "../../AuthContext"
 import { useNavigate } from "react-router-dom";
 import MultipleSelect from "../../components/MultipleSelect/MultipleSelect"
-
-const tags = [
-	{ value: "puteshestviya", label: "Путешествия" },
-	{ value: "eda", label: "еда" },
-	{ value: "jizn", label: "Жизнь" },
-	{ value: "programmirovanie", label: "Программирование" },
-]
+import Button from "../../components/Button/Button"
 
 
 const CreatePost = () => {
-	const { currentUser, enqueueSnackbar } = useContext(AuthContext)
+	const { currentUser, enqueueSnackbar, tags } = useContext(AuthContext)
 	const [optionSelected, setOptionSelected] = useState([]);
 
 	const [body, setBody] = useState("");
@@ -49,7 +43,7 @@ const CreatePost = () => {
 	return (
 		<div className="create-post">
 			<input ref={inputFileRef} type="file" onChange={handleChangeFile} hidden />
-			<button onClick={() => inputFileRef.current.click()} > Загрузить превью</button>
+			<Button type="loader" onClick={() => inputFileRef.current.click()} > Загрузить превью</Button>
 
 			{imageUrl && (
 				<>
@@ -67,7 +61,7 @@ const CreatePost = () => {
 			<Editor setBody={setBody} setTitle={setTitle} body={body} title={title} />
 			<h4>Выберите тэги статьи:</h4>
 			<MultipleSelect setOptionSelected={setOptionSelected} optionSelected={optionSelected} options={tags}></MultipleSelect>
-			<button onClick={submitHandler} className='create-post__button'>Отправить статью</button>
+			<Button type="save" onClick={submitHandler} className='create-post__button'>Отправить статью</Button>
 		</div>
 	);
 }

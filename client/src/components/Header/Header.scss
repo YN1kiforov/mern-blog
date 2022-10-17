@@ -10,6 +10,7 @@
 	}
 	&__menu {
 		display: flex;
+		align-items: center;
 		img {
 			height: 38px;
 		}
@@ -20,17 +21,17 @@
 	}
 	&__search {
 		position: relative;
-		height: 40px;
-		background: #2f3640;
+		padding: 15px;
 		border-radius: 40px;
-
-		&:hover > input {
+		&-container {
+			height: 40px;
+			border-radius: 40px;
+			position: relative;
+			background: #2f3640;
+		}
+		&:hover input {
 			width: 240px;
 			padding: 0 6px;
-		}
-		&:hover > button {
-			background: white;
-			color: #2f3640;
 		}
 		input {
 			border: none;
