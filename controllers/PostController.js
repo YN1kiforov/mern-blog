@@ -13,10 +13,13 @@ exports.getAll = async (req, res) => {
 			match = { author: mongoose.Types.ObjectId(user) }
 		}
 		if (lastPostNumber && (lastPostNumber !== "null")) {
-			match = { ...match, number: { $lt: lastPostNumber } }
+			match = { ...match, number: { $lt: Number(lastPostNumber) } }
+			//match = { ...match, number: { $lt: 14} }
+
 		}
 		pipeline = [
 			{ $match: match },
+
 			{ $sort: { 'number': -1 } }
 		]
 
