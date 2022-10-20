@@ -17,6 +17,9 @@ const CreatePost = () => {
 	const navigate = useNavigate();
 	const inputFileRef = useRef(null);
 	const [title, setTitle] = useState("");
+	if (!currentUser){
+		navigate('/login')
+	}
 	const submitHandler = async () => {
 		if (body && title && imageUrl) {
 			const tags = optionSelected.map(item => item.value)

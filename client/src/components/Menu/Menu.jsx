@@ -5,6 +5,15 @@ export const Menu = (props) => {
 	const [menuActive, setMenuActive] = useState(false);
 	const listItem = []
 	const body = []
+	// if (menuActive) {
+	// 	document.addEventListener('click', (e) => {
+	// 		const but = document.querySelector('.more-button')
+	// 		if (e.target.contains(but)){
+	// 			setMenuActive(false)
+	// 		}
+	// 	}, { once: true })
+	// }
+
 	props.children.forEach(element => {
 		(Array.isArray(element) || element?.type?.name === "MenuItem" || element?.props?.to) ? listItem.push(element) : body.push(element)
 	});

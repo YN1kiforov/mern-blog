@@ -25,7 +25,7 @@ const Header = () => {
 
 		try {
 
-			if (currentUser._id) {
+			if (currentUser?._id) {
 
 				(async () => {
 					const { data } = await axios.get(`/user?id=${currentUser?._id}`)
@@ -54,7 +54,7 @@ const Header = () => {
 						<Menu>
 							<img src={notification}></img>
 							{notifications
-								? (notifications.map((post,index) => {
+								? (notifications.map((post, index) => {
 									return <MenuItem key={`${post.title}_${index}`} ><Link to={`/post/${post._id}`}>{post.title}</Link></MenuItem>
 								}))
 								: <MenuItem>Не удалось найти</MenuItem>
@@ -65,7 +65,7 @@ const Header = () => {
 				<li className="header__avatar">
 					{currentUser ? <>
 						<Menu>
-							<img src={currentUser?.avatarUrl || avatar}></img>
+							<img src={currentUser?.avatarUrl ? `http://localhost:3001${currentUser?.avatarUrl}` : avatar}></img>
 							<Link to={`/user/${currentUser._id}`}><MenuItem>Профиль</MenuItem></Link>
 							<Link to="/create-post"><MenuItem>Написать блог</MenuItem></Link>
 							<MenuItem onClick={logout}>Выйти</MenuItem>

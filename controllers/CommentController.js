@@ -1,4 +1,5 @@
 const Comment = require("../models/Comment");
+const Post = require("../models/Post");
 
 exports.getComments = async (req, res) => {
 	try {
@@ -27,6 +28,8 @@ exports.postComment = async (req, res) => {
 			select:
 				'name avatarUrl',
 		})
+		const post = await Post.findById(postId)
+		await Post.updateOne({ _id: postId }, {$set:{commentsCount: post.commentsCount + 1}})
 		res.json({ message: 'norm', comment: newComment })
 
 	} catch (e) {

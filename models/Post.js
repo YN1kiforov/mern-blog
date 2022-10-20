@@ -7,9 +7,9 @@ const PostSchema = new Schema({
   body: String,
   imageUrl: String,
   viewsCount: { type: Number, default: 0 },
+  number: { type: Number },
   commentsCount: { type: Number, default: 0 },
   tags: { type: [String], default: [] },
-  comments: { type: [Schema.Types.ObjectId], ref: 'Comment', }
 }, { timestamps: true });
 
 module.exports = mongoose.model("Post", PostSchema)

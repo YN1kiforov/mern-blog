@@ -11,9 +11,32 @@
 				margin: 0px 0px 0px 0px;
 			}
 		}
+
 	}
-	&__sub{
-		
+	&__avatar{
+		border-radius: 50%;
+		border: 1px solid gray;
+	}
+	&__image {
+		position: relative;
+		& button {
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background-color: gray;
+			right: 0;
+			bottom: 4px;
+			transition: all ease 0.5s;
+			cursor: pointer;
+			outline: 0px;
+			border: solid black 1px;
+			&:hover {
+				background-color: rgb(199, 197, 197);
+			}
+		}
+	}
+	&__sub {
 		margin: 10px auto 0px auto;
 	}
 	background-color: #fff;
@@ -69,7 +92,7 @@
 			width: 60px;
 			height: 60px;
 		}
-		input{
+		input {
 			margin-top: 10px;
 		}
 	}

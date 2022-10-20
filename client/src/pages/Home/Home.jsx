@@ -26,7 +26,6 @@ const Home = () => {
 				{posts ? posts.map((post,index) => {
 					return <li key={`${post.title}_${index}`}>
 						<Post
-							
 							title={post.title}
 							viewsCount={post.viewsCount}
 							commentsCount={post.commentsCount}

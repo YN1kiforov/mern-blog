@@ -25,11 +25,11 @@ export const AuthContextProvider = ({ children }) => {
 			if (res.status == 200) {
 				setCurrentUser(res.data.user);
 			}
-			enqueueSnackbar('Неверный логин или пароль', { autoHideDuration: 1000, variant: 'error', })
+			enqueueSnackbar('Добро пожаловать', { autoHideDuration: 1500, variant: 'success', })
 
 		} catch (error) {
 			console.log(`error ${error}`)
-			enqueueSnackbar('Неверный логин или пароль', { autoHideDuration: 1000, variant: 'error', })
+			enqueueSnackbar('Неверный логин или пароль', { autoHideDuration: 1500, variant: 'error', })
 		}
 	};
 	const register = async (inputs) => {
@@ -38,19 +38,19 @@ export const AuthContextProvider = ({ children }) => {
 			if (res.status == 200) {
 				setCurrentUser(res.data.user);
 			}
-			enqueueSnackbar('Неверный логин или пароль', { autoHideDuration: 1000, variant: 'error', })
+			enqueueSnackbar('обро пожаловать', { autoHideDuration: 1500, variant: 'success', })
 
 		} catch (error) {
 			console.log(`error ${error}`)
-			enqueueSnackbar('Неверный логин или пароль', { autoHideDuration: 1000, variant: 'error', })
+			enqueueSnackbar('Неверный логин или пароль', { autoHideDuration: 1500, variant: 'error', })
 		}
 	};
 	const logout = () => {
 		setCurrentUser(null);
 	};
 
-	return (
-		<AuthContext.Provider value={{ currentUser, login, logout, register, enqueueSnackbar, tags }}>
+		return (
+		<AuthContext.Provider value={{ currentUser, setCurrentUser, login, logout, register, enqueueSnackbar, tags }}>
 			{children}
 		</AuthContext.Provider>
 	);

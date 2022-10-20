@@ -5,14 +5,19 @@ import axios from "../../axios"
 import { useSearchParams, useLocation, } from "react-router-dom";
 const Posts = () => {
 	const [posts, setPosts] = useState(null);
+	const [lastPostNumber, setLastPostNumber] = useState(null);
 	const [searchParams, setSearchParams] = useSearchParams();
 	const location = useLocation()
 
 	useEffect(() => {
 		(async () => {
 			try {
-				let { data } = await axios.get(`/getAll?limit=8&category=${searchParams.get("category")}&search=${searchParams.get("search")}`)
+				let { data } = await axios.get(`/getAll?limit=8
+				&category=${searchParams.get("category")}
+				&search=${searchParams.get("search")}
+				&lastPostNumber=${lastPostNumber}`)
 				setPosts(data.posts)
+				setLastPostNumber(data.posts[data.posts.length-1].number)
 			} catch (error) {
 				console.log(error)
 			}

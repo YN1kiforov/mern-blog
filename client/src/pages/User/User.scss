@@ -2,9 +2,11 @@
 	&__posts-list{
 		li{
 			margin-bottom: 40px;
-			&:last-of-type{
-				margin-bottom: 0;
-			}
+
 		}
+	}
+	& .post__text{
+		max-height: 100px;
+		overflow: hidden;
 	}
 }

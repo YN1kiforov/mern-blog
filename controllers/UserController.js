@@ -70,8 +70,8 @@ exports.getUser = async (req, res) => {
 
 exports.patchUser = async (req, res) => {
 	try {
-		const { id, name, about } = req.body
-		await User.updateOne({ _id: id }, { $set: { name, about } })
+		const { id, name, about, avatarUrl } = req.body
+		await User.updateOne({ _id: id }, { $set: { name, about, avatarUrl } })
 		res.json({ message: `norm post` })
 
 	} catch (e) {

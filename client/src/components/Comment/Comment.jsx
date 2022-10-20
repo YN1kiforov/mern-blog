@@ -13,10 +13,10 @@ const Comment = (props) => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [editInput, setEditInput] = useState(props.body);
 
-	const isYourComment = currentUser._id == props.author._id
+	const isYourComment = currentUser?._id == props.author?._id
 	return (
 		<div className="comment">
-			<img src={Avatar} alt="" />
+			<img src={props.author.avatarUrl ? `http://localhost:3001${props.author.avatarUrl}` : Avatar} className="avatar" alt="" />
 			<div className='comment__content'>
 				<div className='comment__top'>
 					<h5 className="comment__name">{props.author?.name}</h5>
@@ -40,15 +40,11 @@ const Comment = (props) => {
 						<div className='comment__options-icon'>
 							<span></span>
 						</div>
-						<MenuItem>
-							<button onClick={() => { setIsEditing(true) }} className='comment__edit-icon'>
-								Редактировать
-							</button>
+						<MenuItem onClick={() => { setIsEditing(true) }} className='comment__edit-icon'>
+							Редактировать
 						</MenuItem>
-						<MenuItem>
-							<button onClick={() => { props.delete(props.id) }} className='comment__detele-icon'>
-								Удалить
-							</button>
+						<MenuItem onClick={() => { props.delete(props.id) }}>
+							Удалить
 						</MenuItem>
 					</Menu>
 				</div>

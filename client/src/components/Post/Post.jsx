@@ -19,7 +19,7 @@ const Post = (props) => {
 				<li className="post__comments">
 					<img className="post__icon" src={Comments_icon} alt="" />
 
-					{props.viewsCount || 0}
+					{props.commentsCount || 0}
 				</li>
 				<li className="post__views">
 					<img className="post__icon" src={Views_icon} alt="" />
@@ -31,7 +31,7 @@ const Post = (props) => {
 				<Link to={`/post/${props.link}`}><Button type="arrow" className=''>Читать далее</Button></Link>
 				<Link to={`/user/${author?._id}`}>
 					<div className="post__author">
-						<img src={author.avatarUrl || Avatar} alt="" />
+						<img src={author.avatarUrl ? `http://localhost:3001${author.avatarUrl}` : Avatar} className="avatar" alt="" />
 						<span>{author.name}</span>
 					</div>
 				</Link>

@@ -20,6 +20,7 @@ const User = () => {
 					axios.get(`/user?id=${userId}`),
 					axios.get(`/getAll?limit=10&user=${userId}`)
 				]);
+				console.log(posts)
 				setUser(user.data.user)
 				setPosts(posts.data.posts)
 
@@ -40,8 +41,7 @@ const User = () => {
 							title={post.title}
 							viewsCount={post.viewsCount}
 							commentsCount={post.commentsCount}
-							authorAvatar={post.author.avatarUrl}
-							authorName={post.author.name}
+							author={post.author}
 							body={post.body}
 							link={post._id}
 							date={post.createdAt}

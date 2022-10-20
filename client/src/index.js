@@ -68,11 +68,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <SnackbarProvider maxSnack={3}>
-      <AuthContextProvider>
-        <RouterProvider router={router} />
-      </AuthContextProvider>
-    </SnackbarProvider>
-  </React.StrictMode>
+  <SnackbarProvider maxSnack={3}>
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
+  </SnackbarProvider>
 );

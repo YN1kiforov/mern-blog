@@ -5,4 +5,8 @@
 			text-align: center;
 		}
 	}
+	& .post__text{
+		max-height: 100px;
+		overflow: hidden;
+	}
 }

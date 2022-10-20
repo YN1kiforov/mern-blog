@@ -1,12 +1,14 @@
 import "./CommentsBlock.scss"
 import Comment from "../../components/Comment/Comment"
 import axios from "../../axios"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import Button from "../../components/Button/Button"
+import { AuthContext } from "../../AuthContext"
 
 
 
 const CommentsBlock = (props) => {
+	const { currentUser } = useContext(AuthContext)
 	const [commentValue, setCommentValue] = useState("");
 	const [comments, setComments] = useState(null);
 
@@ -40,7 +42,8 @@ const CommentsBlock = (props) => {
 
 	async function deleteComment(id) {
 		try {
-			await axios.delete(`/post?id=${id}`)
+			await axios.delete(`/comment?id=${id}`)
+			setComments(prev => prev.filter(com => com._id != id))
 		} catch (error) {
 			console.log(error)
 		}
@@ -49,7 +52,7 @@ const CommentsBlock = (props) => {
 		<div className="comments">
 			<div>
 				<h4 htmlFor="Ваш коментарий">Напишите коментарий</h4>
-				<textarea onChange={(e) => { setCommentValue(e.target.value) }} value={commentValue} cols="30" rows="10" placeholder="Напишите комментарий"></textarea>
+				<textarea disabled={!currentUser._id} onChange={(e) => { setCommentValue(e.target.value) }} value={commentValue} cols="30" rows="10" placeholder="Напишите комментарий"></textarea>
 				<Button onClick={sendComment}>Отправить</Button>
 			</div>
 			{

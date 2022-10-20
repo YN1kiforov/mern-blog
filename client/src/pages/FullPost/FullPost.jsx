@@ -26,16 +26,16 @@ const FullPost = () => {
 	const [optionSelected, setOptionSelected] = useState([]);
 	const [body, setBody] = useState("");
 	const [title, setTitle] = useState("");
-	const isYourPost = currentUser?._id == post?.author._id
+	const isYourPost = currentUser?._id == post?.author?._id
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		(async () => {
 			const { data } = await axios.get(`/post?postId=${postId}`);
-			setPost(data.post)
-			setBody(data.post.body)
-			setTitle(data.post.title)
-			const options = data.post.tags.map(tag => {
+			setPost(data?.post)
+			setBody(data?.post?.body)
+			setTitle(data?.post?.title)
+			const options = data?.post?.tags.map(tag => {
 				for (let i = 0; i < tags.length; i++) {
 					if (tag === tags[i].value)
 						return tags[i]
@@ -47,7 +47,7 @@ const FullPost = () => {
 	}, [postId]);
 	async function editPost() {
 		try {
-			const options = optionSelected.map(tag => tag.value)
+			const options = optionSelected?.map(tag => tag.value)
 			await axios.patch(`/post`, { postId, title, body, tags: options })
 			setPost(prev => ({ ...prev, title, body, tags: options }))
 			setIsEditing(false)
@@ -57,7 +57,7 @@ const FullPost = () => {
 	}
 	async function deletePost() {
 		try {
-			await axios.delete(`/post?id=${postId}`)
+			await axios.delete(`/post?id=${postId}&authorId=${currentUser._id}`)
 			navigate('/posts')
 		} catch (error) {
 			console.log(error)
@@ -101,15 +101,16 @@ const FullPost = () => {
 								</li>
 							</ul>
 							<div className='full-post__content'>
-								<div dangerouslySetInnerHTML={{ __html: post.body }} className="post__text" />
+								<div dangerouslySetInnerHTML={{ __html: post?.body }} className="post__text" />
 							</div>
 							<ul className='full-post__tags'>
-								{post.tags.map((tag,index) => {
+								{post.tags ? post.tags.map((tag, index) => {
 									for (let i = 0; i < tags.length; i++) {
 										if (tag === tags[i].value)
 											return <Tag key={`${tag}_${index}`} color={tags[i].color} name={tags[i].label} link={tags[i].value} ></Tag>
 									}
-								})}
+								})
+									: <></>}
 							</ul>
 						</>
 					}
