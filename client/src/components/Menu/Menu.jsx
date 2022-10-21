@@ -1,24 +1,29 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./Menu.scss"
 
 export const Menu = (props) => {
-	const [menuActive, setMenuActive] = useState(false);
+	const [menuActive, setMenuActive] = useState(true);
+	const toggleContainer = useRef();
 	const listItem = []
 	const body = []
-	// if (menuActive) {
-	// 	document.addEventListener('click', (e) => {
-	// 		const but = document.querySelector('.more-button')
-	// 		if (e.target.contains(but)){
-	// 			setMenuActive(false)
-	// 		}
-	// 	}, { once: true })
-	// }
 
+	useEffect(() => {
+		setMenuActive(false)
+		document.addEventListener('click', onClickOutsideHandler);
+		return () => {
+			document.removeEventListener('click', onClickOutsideHandler);
+		};
+	}, []);
+	const onClickOutsideHandler = (event) => {
+		if (menuActive && !toggleContainer.current.contains(event.target)) {
+			setMenuActive(false);
+		}
+	}
 	props.children.forEach(element => {
 		(Array.isArray(element) || element?.type?.name === "MenuItem" || element?.props?.to) ? listItem.push(element) : body.push(element)
 	});
 	return (
-		<div className={menuActive ? `list-container active` : `list-container`}>
+		<div ref={toggleContainer} className={menuActive ? `list-container active` : `list-container`}>
 			<button onClick={() => { setMenuActive(!menuActive) }} className="more-button" aria-label="Menu Button">
 				<div className="menu-icon-wrapper">
 					{body}

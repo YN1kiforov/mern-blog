@@ -14,8 +14,6 @@ exports.getAll = async (req, res) => {
 		}
 		if (lastPostNumber && (lastPostNumber !== "null")) {
 			match = { ...match, number: { $lt: Number(lastPostNumber) } }
-			//match = { ...match, number: { $lt: 14} }
-
 		}
 		pipeline = [
 			{ $match: match },
