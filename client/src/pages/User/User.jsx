@@ -20,7 +20,6 @@ const User = () => {
 					axios.get(`/user?id=${userId}`),
 					axios.get(`/getAll?limit=10&user=${userId}`)
 				]);
-				console.log(posts)
 				setUser(user.data.user)
 				setPosts(posts.data.posts)
 
