@@ -21,7 +21,7 @@ const CreatePost = () => {
 		if (!currentUser) {
 			navigate('/login')
 		}
-	}, [currentUser]);
+	}, [currentUser, navigate]);
 
 	const submitHandler = async () => {
 		if (body && title && imageUrl) {
@@ -49,7 +49,7 @@ const CreatePost = () => {
 	return (
 		<div className="create-post">
 			<input ref={inputFileRef} type="file" onChange={handleChangeFile} hidden />
-			<Button style="loader" onClick={() => inputFileRef.current.click()} > Загрузить превью</Button>
+			<Button variant="loader" onClick={() => inputFileRef.current.click()} > Загрузить превью</Button>
 
 			{imageUrl && (
 				<>
@@ -67,7 +67,7 @@ const CreatePost = () => {
 			<Editor setBody={setBody} setTitle={setTitle} body={body} title={title} />
 			<h4>Выберите тэги статьи:</h4>
 			<MultipleSelect setOptionSelected={setOptionSelected} optionSelected={optionSelected} options={tags}></MultipleSelect>
-			<Button style="save" onClick={submitHandler} className='create-post__button'>Отправить статью</Button>
+			<Button variant="save" onClick={submitHandler} className='create-post__button'>Отправить статью</Button>
 		</div>
 	);
 }

@@ -43,7 +43,7 @@ const CommentsBlock = (props) => {
 	async function deleteComment(id) {
 		try {
 			await axios.delete(`/comment?id=${id}`)
-			setComments(prev => prev.filter(com => com._id != id))
+			setComments(prev => prev.filter(com => com._id !== id))
 		} catch (error) {
 			console.log(error)
 		}

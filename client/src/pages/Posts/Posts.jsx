@@ -6,12 +6,12 @@ import { useSearchParams, useLocation, } from "react-router-dom";
 const Posts = () => {
 	const [posts, setPosts] = useState(null);
 	const [lastPostNumber, setLastPostNumber] = useState(null);
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [searchParams] = useSearchParams();
 	const location = useLocation()
 	const [fetching, setFetching] = useState(false);
 	const [stopFetching, setStopFetching] = useState(false);
 
-	const limit=8;
+	const limit = 8;
 
 	useEffect(() => {
 		document.addEventListener('scroll', scrollHandler)
@@ -28,11 +28,11 @@ const Posts = () => {
 					&category=${searchParams.get("category")}
 					&search=${searchParams.get("search")}
 					&lastPostNumber=${lastPostNumber}`)
-					setPosts((prev) => (prev.concat(data.posts)))
-					if (data.posts.length < limit){
+					setPosts((prev) => (prev ? prev.concat(data.posts) : data.posts))
+					if (data.posts.length < limit) {
 						return setStopFetching(true)
 					}
-					setLastPostNumber(data.posts[data.posts.length - 1].number )
+					setLastPostNumber(data.posts[data.posts.length - 1].number)
 					setFetching(false)
 				})()
 
@@ -41,22 +41,8 @@ const Posts = () => {
 		} catch (error) {
 			console.log(error)
 		}
-	}, [fetching]);
+	}, [fetching, location, searchParams, lastPostNumber, stopFetching]);
 
-	useEffect(() => {
-		(async () => {
-			try {
-				let { data } = await axios.get(`/getAll?limit=${limit}
-				&category=${searchParams.get("category")}
-				&search=${searchParams.get("search")}
-				&lastPostNumber=${lastPostNumber}`)
-				setPosts(data.posts)
-				setLastPostNumber(data.posts[data.posts.length - 1].number)
-			} catch (error) {
-				console.log(error)
-			}
-		})()
-	}, [location]);
 	const scrollHandler = (e) => {
 		if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 300) {
 			setFetching(true)

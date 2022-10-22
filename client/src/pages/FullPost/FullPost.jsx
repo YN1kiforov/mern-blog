@@ -26,7 +26,7 @@ const FullPost = () => {
 	const [optionSelected, setOptionSelected] = useState([]);
 	const [body, setBody] = useState("");
 	const [title, setTitle] = useState("");
-	const isYourPost = currentUser?._id == post?.author?._id
+	const isYourPost = currentUser?._id === post?.author?._id
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -40,11 +40,11 @@ const FullPost = () => {
 					if (tag === tags[i].value)
 						return tags[i]
 				}
+				return null
 			})
 			setOptionSelected(options)
 		})()
-
-	}, [postId]);
+	}, [postId, tags]);
 	async function editPost() {
 		try {
 			const options = optionSelected?.map(tag => tag.value)
@@ -73,8 +73,8 @@ const FullPost = () => {
 							<Editor setBody={setBody} setTitle={setTitle} body={body} title={title} />
 							<MultipleSelect setOptionSelected={setOptionSelected} optionSelected={optionSelected} options={tags}></MultipleSelect>
 							<div className='post__buttons'>
-								<Button style="cancel" onClick={() => { setIsEditing(false) }} className=''>Отмена</Button>
-								<Button style="save" onClick={editPost} className=''>Сохранить</Button>
+								<Button variant="cancel" onClick={() => { setIsEditing(false) }} className=''>Отмена</Button>
+								<Button variant="save" onClick={editPost} className=''>Сохранить</Button>
 							</div>
 						</>
 						: <>
@@ -109,6 +109,7 @@ const FullPost = () => {
 										if (tag === tags[i].value)
 											return <Tag key={`${tag}_${index}`} color={tags[i].color} name={tags[i].label} link={tags[i].value} ></Tag>
 									}
+									return null
 								})
 									: <></>}
 							</ul>

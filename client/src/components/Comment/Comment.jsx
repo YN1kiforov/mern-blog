@@ -13,7 +13,7 @@ const Comment = (props) => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [editInput, setEditInput] = useState(props.body);
 
-	const isYourComment = currentUser?._id == props.author?._id
+	const isYourComment = currentUser?._id === props.author?._id
 	return (
 		<div className="comment">
 			<img src={props.author.avatarUrl ? `http://localhost:3001${props.author.avatarUrl}` : Avatar} className="avatar" alt="" />
@@ -26,8 +26,8 @@ const Comment = (props) => {
 					? <>
 						<input className='comment__text' value={editInput} onChange={e => { setEditInput(e.target.value) }}></input>
 						<div className='comment__edit-buttons'>
-							<Button style="cancel" onClick={() => { setEditInput(props.body); setIsEditing(false) }}>Отмена</Button>
-							<Button style="save" onClick={() => { props.edit(props.id, editInput); setIsEditing(false); setCommentBody(editInput) }} className=''>Подтвертить</Button>
+							<Button variant="cancel" onClick={() => { setEditInput(props.body); setIsEditing(false) }}>Отмена</Button>
+							<Button variant="save" onClick={() => { props.edit(props.id, editInput); setIsEditing(false); setCommentBody(editInput) }} className=''>Подтвертить</Button>
 						</div>
 					</>
 					: <>

@@ -6,8 +6,8 @@ import telegram from "../../assets/telegram_icon.png"
 const Footer = React.memo(function MyComponent(props) {
 	return (
 		<div className="footer">
-			<img className="footer__logo" src={Logo}></img>
-			<img className="footer__icon" src={telegram}></img>
+			<img className="footer__logo" src={Logo} alt="Картинка"></img>
+			<img className="footer__icon" src={telegram} alt="Картинка"></img>
 		</div>
 	);
 })

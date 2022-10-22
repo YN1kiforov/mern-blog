@@ -44,13 +44,13 @@ const Register = () => {
 				<h2>Регистрация</h2>
 				<form onSubmit={formik.handleSubmit} className='register__form'>
 					<div className='register__input-container'>
-						<Input style="placeholder" value={formik.values.name} onChange={formik.handleChange} name="name" type="text" placeholder="Имя" />
+						<Input variant="placeholder" value={formik.values.name} onChange={formik.handleChange} name="name" type="text" placeholder="Имя" />
 						<label>{formik.errors.name}</label>
 
-						<Input style="placeholder" value={formik.values.email} onChange={formik.handleChange} name="email" type="email" placeholder="Email" />
+						<Input variant="placeholder" value={formik.values.email} onChange={formik.handleChange} name="email" type="email" placeholder="Email" />
 						<label>{formik.errors.email}</label>
 
-						<Input style="placeholder" value={formik.values.password} onChange={formik.handleChange} name="password" type="password" placeholder="Пароль" />
+						<Input variant="placeholder" value={formik.values.password} onChange={formik.handleChange} name="password" type="password" placeholder="Пароль" />
 						<label>{formik.errors.password}</label>
 
 					</div>

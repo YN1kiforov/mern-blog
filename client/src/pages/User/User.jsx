@@ -27,7 +27,7 @@ const User = () => {
 				console.log(error)
 			}
 		})()
-	}, []);
+	}, [userId]);
 
 	return (
 		<div className="user">

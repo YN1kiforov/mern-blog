@@ -8,17 +8,18 @@ export const Menu = (props) => {
 	const body = []
 
 	useEffect(() => {
+		const onClickOutsideHandler = (event) => {
+			if (menuActive && !toggleContainer.current.contains(event.target)) {
+				setMenuActive(false);
+			}
+		}
 		setMenuActive(false)
 		document.addEventListener('click', onClickOutsideHandler);
 		return () => {
 			document.removeEventListener('click', onClickOutsideHandler);
 		};
-	}, []);
-	const onClickOutsideHandler = (event) => {
-		if (menuActive && !toggleContainer.current.contains(event.target)) {
-			setMenuActive(false);
-		}
-	}
+	}, [menuActive]);
+
 	props.children.forEach(element => {
 		(Array.isArray(element) || element?.type?.name === "MenuItem" || element?.props?.to) ? listItem.push(element) : body.push(element)
 	});
