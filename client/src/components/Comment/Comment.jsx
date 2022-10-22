@@ -26,8 +26,8 @@ const Comment = (props) => {
 					? <>
 						<input className='comment__text' value={editInput} onChange={e => { setEditInput(e.target.value) }}></input>
 						<div className='comment__edit-buttons'>
-							<Button type="cancel" onClick={() => { setEditInput(props.body); setIsEditing(false) }}>Отмена</Button>
-							<Button type="save" onClick={() => { props.edit(props.id, editInput); setIsEditing(false); setCommentBody(editInput) }} className=''>Подтвертить</Button>
+							<Button style="cancel" onClick={() => { setEditInput(props.body); setIsEditing(false) }}>Отмена</Button>
+							<Button style="save" onClick={() => { props.edit(props.id, editInput); setIsEditing(false); setCommentBody(editInput) }} className=''>Подтвертить</Button>
 						</div>
 					</>
 					: <>

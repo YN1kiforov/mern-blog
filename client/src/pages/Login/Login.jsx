@@ -50,7 +50,7 @@ const Login = () => {
 						<label>{formik.errors.password}</label>
 
 					</div>
-					<Button disabled={isSubmit} type="submit" className=''>Войти в аккаунт</Button>
+					<Button disabled={isSubmit} type="submit">Войти в аккаунт</Button>
 				</form>
 				<p className="login__tip">У вас ещё нет аккаунта?  <Link to="/register">Зарегистрируйся</Link></p>
 			</div>

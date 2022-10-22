@@ -125,15 +125,15 @@ const AuthorBlock = (props) => {
 			</div>
 
 			{isYou ? <></> : (isSubscribed
-				? <Button type="cancel" disabled={!currentUser} onClick={unSubscribeUser} className='author__sub'>Отписаться</Button>
-				: <Button type="save" disabled={!currentUser} onClick={subscribeUser} className='author__sub'>Подисаться</Button>)
+				? <Button style="cancel" disabled={!currentUser} onClick={unSubscribeUser} className='author__sub'>Отписаться</Button>
+				: <Button style="save" disabled={!currentUser} onClick={subscribeUser} className='author__sub'>Подисаться</Button>)
 
 			}
 			{
 				isEditing ?
 					<div className='author__buttons'>
-						<Button type="cancel" onClick={() => setIsEditing(false)} >Отмена</Button>
-						<Button disabled={!((aboutInput || "").length && nameInput)} type="save" onClick={editUserData}>Сохранить</Button>
+						<Button style="cancel" onClick={() => setIsEditing(false)} >Отмена</Button>
+						<Button disabled={!((aboutInput || "").length && nameInput)} style="save" onClick={editUserData}>Сохранить</Button>
 					</div> : <></>
 			}
 

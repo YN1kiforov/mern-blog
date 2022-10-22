@@ -73,8 +73,8 @@ const FullPost = () => {
 							<Editor setBody={setBody} setTitle={setTitle} body={body} title={title} />
 							<MultipleSelect setOptionSelected={setOptionSelected} optionSelected={optionSelected} options={tags}></MultipleSelect>
 							<div className='post__buttons'>
-								<Button type="cancel" onClick={() => { setIsEditing(false) }} className=''>Отмена</Button>
-								<Button type="save" onClick={editPost} className=''>Сохранить</Button>
+								<Button style="cancel" onClick={() => { setIsEditing(false) }} className=''>Отмена</Button>
+								<Button style="save" onClick={editPost} className=''>Сохранить</Button>
 							</div>
 						</>
 						: <>

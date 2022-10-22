@@ -4,17 +4,17 @@ import search from "../../assets/search_icon.jpg"
 import notification from "../../assets/notification.png"
 import avatar from "../../assets/avatar_icon.png"
 import { Menu, MenuItem } from "../Menu/Menu"
-import { useContext, useState, useEffect } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { AuthContext } from "../../AuthContext"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "../../axios"
 
-const Header = () => {
+const Header = React.memo(function () {
 	const { currentUser, logout } = useContext(AuthContext)
 	const [searchInput, setSearchInput] = useState("");
 	const [notifications, setNotifications] = useState(null);
 	const navigate = useNavigate();
-
+	console.log("header")
 	function searchHandler() {
 		if (!searchInput) {
 			return
@@ -22,11 +22,8 @@ const Header = () => {
 		navigate(`/posts?search=${searchInput}`)
 	}
 	useEffect(() => {
-
 		try {
-
 			if (currentUser?._id) {
-
 				(async () => {
 					const { data } = await axios.get(`/user?id=${currentUser?._id}`)
 					setNotifications(data?.user?.notificationsList)
@@ -81,5 +78,5 @@ const Header = () => {
 			</ul>
 		</div>
 	);
-}
+})
 export default Header;

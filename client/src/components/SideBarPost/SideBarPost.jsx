@@ -1,5 +1,4 @@
 import "./SideBarPost.scss"
-import Photo from "./../../assets/random_photo.jpg"
 import { dataFormatter } from "../../dateFormatter"
 import { Link } from "react-router-dom"
 const SideBarPost = (props) => {

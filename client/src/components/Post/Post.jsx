@@ -28,7 +28,7 @@ const Post = (props) => {
 			</ul>
 			<div dangerouslySetInnerHTML={{ __html: props.body }} className="post__text" />
 			<div className='post__bottom'>
-				<Link to={`/post/${props.link}`}><Button type="arrow" className=''>Читать далее</Button></Link>
+				<Link to={`/post/${props.link}`}><Button style="arrow" className=''>Читать далее</Button></Link>
 				<Link to={`/user/${author?._id}`}>
 					<div className="post__author">
 						<img src={author.avatarUrl ? `http://localhost:3001${author.avatarUrl}` : Avatar} className="avatar" alt="" />

@@ -52,7 +52,7 @@ const CommentsBlock = (props) => {
 		<div className="comments">
 			<div>
 				<h4 htmlFor="Ваш коментарий">Напишите коментарий</h4>
-				<textarea disabled={!currentUser._id} onChange={(e) => { setCommentValue(e.target.value) }} value={commentValue} cols="30" rows="10" placeholder="Напишите комментарий"></textarea>
+				<textarea disabled={!currentUser?._id} onChange={(e) => { setCommentValue(e.target.value) }} value={commentValue} cols="30" rows="10" placeholder="Напишите комментарий"></textarea>
 				<Button onClick={sendComment}>Отправить</Button>
 			</div>
 			{
