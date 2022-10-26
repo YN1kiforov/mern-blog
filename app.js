@@ -4,10 +4,11 @@ const port = process.env.PORT || 3001;
 const fs = require('fs');
 const multer = require('multer');
 const mongoose = require('mongoose');
+
 const user = require('./routes/user')
 const comment = require('./routes/comment')
-
 const post = require('./routes/post')
+
 const cors = require('cors');
 
 
@@ -41,8 +42,6 @@ app.post('/upload', upload.single('image'), (req, res) => {
 		url: `/uploads/${req.file.originalname}`,
 	});
 });
-
-
 
 
 app.listen(port, () => {
