@@ -1,5 +1,5 @@
 import axios from "axios";
 const instance = axios.create({
-	baseURL: 'https://sheltered-castle-49133.herokuapp.com/',
+	baseURL: 'https://infinite-tundra-41570.herokuapp.com/',
 });
 export default instance
