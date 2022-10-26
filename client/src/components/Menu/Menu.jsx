@@ -13,7 +13,6 @@ export const Menu = (props) => {
 				setMenuActive(false);
 			}
 		}
-		setMenuActive(false)
 		document.addEventListener('click', onClickOutsideHandler);
 		return () => {
 			document.removeEventListener('click', onClickOutsideHandler);
