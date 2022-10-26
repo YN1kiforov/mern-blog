@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3001;
+const port = process.env.PORT || 3001;
 const fs = require('fs');
 const multer = require('multer');
 const mongoose = require('mongoose');
@@ -9,6 +9,7 @@ const comment = require('./routes/comment')
 
 const post = require('./routes/post')
 const cors = require('cors');
+
 
 const mongoURI = "mongodb+srv://admin:admin@cluster0.xvhkn1b.mongodb.net/?retryWrites=true&w=majority"
 
