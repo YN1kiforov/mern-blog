@@ -4,15 +4,18 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import axios from "../../axios"
 import Button from "../../components/Button/Button"
+import Loader from "../../components/Loader/Loader";
 
 const Home = () => {
 	const [posts, setPosts] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		(async () => {
 			try {
 				let { data } = await axios.get('/getAll?limit=3')
 				setPosts(data.posts)
+				setIsLoading(false)
 			} catch (error) {
 				console.log(error)
 			}
@@ -21,30 +24,35 @@ const Home = () => {
 	}, []);
 
 	return (
-		<div className="home">
-			<ul className="home__list">
-				{posts ? posts.map((post,index) => {
-					return <li key={`${post.title}_${index}`}>
-						<Post
-							title={post.title}
-							viewsCount={post.viewsCount}
-							commentsCount={post.commentsCount}
-							author={post.author}
-							body={post.body}
-							link={post._id}
-							date={post.createdAt}
-							imageUrl={post.imageUrl}
-							className="home__post">
-						</Post>
-					</li>
-				}) : <div>Не удалось найти данные</div>}
-				<li>
-					<Link to="/posts"><Button>Смотреть все посты</Button></Link>
-				</li>
+		<>
+			{isLoading
+				? <Loader />
+				: <div className="home">
+					<ul className="home__list">
+						{posts ? posts.map((post, index) => {
+							return <li key={`${post.title}_${index}`}>
+								<Post
+									title={post.title}
+									viewsCount={post.viewsCount}
+									commentsCount={post.commentsCount}
+									author={post.author}
+									body={post.body}
+									link={post._id}
+									date={post.createdAt}
+									imageUrl={post.imageUrl}
+									className="home__post">
+								</Post>
+							</li>
+						}) : <div>Не удалось найти данные</div>}
+						<li>
+							<Link to="/posts"><Button>Смотреть все посты</Button></Link>
+						</li>
 
 
-			</ul>
-		</div>
+					</ul>
+				</div>}
+		</>
+
 	);
 }
 export default Home;

@@ -16,7 +16,7 @@ const Comment = (props) => {
 	const isYourComment = currentUser?._id === props.author?._id
 	return (
 		<div className="comment">
-			<img src={props.author.avatarUrl ? `http://localhost:3001${props.author.avatarUrl}` : Avatar} className="avatar" alt="" />
+			<img src={props.author.avatarUrl ? `${process.env.REACT_APP_URL}${props.author.avatarUrl}` : Avatar} className="avatar" alt="" />
 			<div className='comment__content'>
 				<div className='comment__top'>
 					<h5 className="comment__name">{props.author?.name}</h5>

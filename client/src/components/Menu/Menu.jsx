@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import "./Menu.scss"
 
 export const Menu = (props) => {
-	const [menuActive, setMenuActive] = useState(true);
+	const [menuActive, setMenuActive] = useState(false);
 	const toggleContainer = useRef();
 	const listItem = []
 	const body = []

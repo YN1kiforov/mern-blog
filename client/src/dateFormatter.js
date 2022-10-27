@@ -38,6 +38,8 @@ export function dataFormatter(date) {
 		case (11):
 			month = "Декабрь"
 			break;
+		default:
+			month = "Неверная дата";
 
 	}
 	const formattedDate = `${month} ${data.getDate()}, ${data.getFullYear()}`

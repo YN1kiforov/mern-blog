@@ -1,0 +1,1 @@
+Netlify = https://blog-mern-yn.netlify.app/

@@ -11,7 +11,7 @@ const Post = (props) => {
 	return (
 		<div className="post">
 
-			<img src={`http://localhost:3001${props.imageUrl}`} alt="Картинка поста"></img>
+			<img src={`${process.env.REACT_APP_URL}${props.imageUrl}`} alt="Картинка поста"></img>
 
 			<h2><Link to={`/post/${props.link}`}>{props.title}</Link></h2>
 			<ul className='post__info'>
@@ -31,7 +31,7 @@ const Post = (props) => {
 				<Link to={`/post/${props.link}`}><Button variant="arrow" className=''>Читать далее</Button></Link>
 				<Link to={`/user/${author?._id}`}>
 					<div className="post__author">
-						<img src={author.avatarUrl ? `http://localhost:3001${author.avatarUrl}` : Avatar} className="avatar" alt="" />
+						<img src={author.avatarUrl ? `${process.env.REACT_APP_URL}${author.avatarUrl}` : Avatar} className="avatar" alt="" />
 						<span>{author.name}</span>
 					</div>
 				</Link>

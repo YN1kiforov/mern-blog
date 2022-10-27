@@ -110,14 +110,14 @@ const AuthorBlock = (props) => {
 					? <>
 						<div className='author__image'>
 							<input ref={inputFileRef} type="file" onChange={handleChangeFile} hidden />
-							<img className="author__avatar" src={avatarUrl ? `http://localhost:3001${avatarUrl}` : Avatar} alt="" />
+							<img className="author__avatar" src={avatarUrl ? `${process.env.REACT_APP_URL}${avatarUrl}` : Avatar} alt="" />
 							<button onClick={() => inputFileRef.current.click()}>+</button>
 						</div>
 						<Input value={nameInput} onChange={e => setNameInput(e.target.value)} />
 						<Input value={aboutInput} onChange={e => setAboutInput(e.target.value)} />
 					</>
 					: <>
-						<img className="author__avatar" src={author.avatarUrl ? `http://localhost:3001${author.avatarUrl}` : Avatar} alt="" />
+						<img className="author__avatar" src={author.avatarUrl ? `${process.env.REACT_APP_URL}${author.avatarUrl}` : Avatar} alt="" />
 						<Link to={`/user/${author?._id}`}>{author?.name}</Link>
 						<div className='author__about'>{author?.about}</div>
 					</>

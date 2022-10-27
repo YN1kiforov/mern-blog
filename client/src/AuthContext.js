@@ -11,7 +11,7 @@ export const AuthContextProvider = ({ children }) => {
 		localStorage.setItem("user", JSON.stringify(currentUser));
 	}, [currentUser]);
 
-	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+	const { enqueueSnackbar } = useSnackbar();
 	const tags = [
 		{ value: "puteshestviya", label: "Путешествия", color: "rgb(177, 2, 177)" },
 		{ value: "eda", label: "Еда", color: "orange" },
@@ -22,7 +22,7 @@ export const AuthContextProvider = ({ children }) => {
 	const login = async (inputs) => {
 		try {
 			const res = await axios.post("/login", inputs);
-			if (res.status == 200) {
+			if (res.status === 200) {
 				setCurrentUser(res.data.user);
 			}
 			enqueueSnackbar('Добро пожаловать', { autoHideDuration: 1500, variant: 'success', })
@@ -35,7 +35,7 @@ export const AuthContextProvider = ({ children }) => {
 	const register = async (inputs) => {
 		try {
 			const res = await axios.post("/register", inputs);
-			if (res.status == 200) {
+			if (res.status === 200) {
 				setCurrentUser(res.data.user);
 			}
 			enqueueSnackbar('обро пожаловать', { autoHideDuration: 1500, variant: 'success', })

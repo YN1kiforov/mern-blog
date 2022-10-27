@@ -14,7 +14,7 @@ const Header = React.memo(function () {
 	const [searchInput, setSearchInput] = useState("");
 	const [notifications, setNotifications] = useState(null);
 	const navigate = useNavigate();
-	console.log("header")
+	console.log(process.env)
 	function searchHandler() {
 		if (!searchInput) {
 			return
@@ -32,7 +32,7 @@ const Header = React.memo(function () {
 		} catch (error) {
 			console.log(error)
 		}
-	}, []);
+	}, [currentUser?._id]);
 	return (
 		<div className="header">
 			<Link to="/"><img src={Logo} alt="logo" className="header__logo"></img></Link>
@@ -42,14 +42,14 @@ const Header = React.memo(function () {
 					<div className='header__search-container'>
 						<input value={searchInput} onChange={e => { setSearchInput(e.target.value) }} type="text" placeholder="Поиск"></input>
 						<button onClick={searchHandler}>
-							<img src={search} className="material-icons"></img>
+							<img alt ="search" src={search} className="material-icons"></img>
 						</button>
 					</div>
 				</li>
 				{currentUser ? <>
 					<li className="header__notifications">
 						<Menu>
-							<img src={notification}></img>
+							<img alt="kartinka" src={notification}></img>
 							{notifications
 								? (notifications.map((post, index) => {
 									return <MenuItem key={`${post.title}_${index}`} ><Link to={`/post/${post._id}`}>{post.title}</Link></MenuItem>
@@ -62,14 +62,14 @@ const Header = React.memo(function () {
 				<li className="header__avatar">
 					{currentUser ? <>
 						<Menu>
-							<img src={currentUser?.avatarUrl ? `http://localhost:3001${currentUser?.avatarUrl}` : avatar}></img>
+							<img alt="kartinka" src={currentUser?.avatarUrl ? `${process.env.REACT_APP_URL}${currentUser?.avatarUrl}` : avatar}></img>
 							<Link to={`/user/${currentUser._id}`}><MenuItem>Профиль</MenuItem></Link>
 							<Link to="/create-post"><MenuItem>Написать блог</MenuItem></Link>
 							<MenuItem onClick={logout}>Выйти</MenuItem>
 						</Menu>
 					</> : <>
 						<Menu>
-							<img src={avatar}></img>
+							<img alt="kartinka" src={avatar}></img>
 							<Link to="/login"><MenuItem>Войти</MenuItem></Link>
 							<Link to="/register"><MenuItem>Зарегистрироваться</MenuItem></Link>
 						</Menu>
