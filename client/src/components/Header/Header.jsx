@@ -14,7 +14,6 @@ const Header = React.memo(function () {
 	const [searchInput, setSearchInput] = useState("");
 	const [notifications, setNotifications] = useState(null);
 	const navigate = useNavigate();
-	console.log(process.env)
 	function searchHandler() {
 		if (!searchInput) {
 			return
