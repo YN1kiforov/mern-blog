@@ -8,6 +8,7 @@ export const Menu = (props) => {
 	const body = []
 
 	useEffect(() => {
+		
 		const onClickOutsideHandler = (event) => {
 			if (menuActive && !toggleContainer.current.contains(event.target)) {
 				setMenuActive(false);
@@ -20,6 +21,7 @@ export const Menu = (props) => {
 	}, [menuActive]);
 
 	props.children.forEach(element => {
+		console.log(element);
 		(Array.isArray(element) || element?.type?.name === "MenuItem" || element?.type === "li" || element?.props?.to) ? listItem.push(element) : body.push(element)
 	});
 	return (
