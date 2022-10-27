@@ -93,7 +93,7 @@ const FullPost = () => {
 											<MenuItem onClick={deletePost}>Удалить</MenuItem>
 										</Menu>
 									</div> : <></>}
-									<img src={`http://localhost:3001${post.imageUrl}`} alt="" />
+									<img src={`https://infinite-tundra-41570.herokuapp.com${post.imageUrl}`} alt="" />
 									<h2>{post.title}</h2>
 									<ul className='post__info'>
 										<li className="post__date">{dataFormatter(post.createdAt)}</li>

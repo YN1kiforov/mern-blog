@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react"
 import axios from "../../axios"
 import { useSearchParams, useLocation, } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
-import e from "cors";
 
 const Posts = () => {
 	const [posts, setPosts] = useState(null);
@@ -29,19 +28,18 @@ const Posts = () => {
 		let isNewCategory = category !== searchParams.get("category");
 		try {
 			if ((fetching && !stopFetching) || isNewCategory) {
-				console.log('render');
 				(async () => {
 					isNewCategory && setIsLoading(true)
 					let { data } = await axios.get(`/getAll?limit=${limit}				
 					&category=${searchParams.get("category")}
 					&search=${searchParams.get("search")}
 					&lastPostNumber=${isNewCategory ? null : lastPostNumber}`)
-					if (isNewCategory){
+					if (isNewCategory) {
 						setStopFetching(false)
 						setPosts(data.posts)
 						setCategory(searchParams.get("category"))
 						setIsLoading(false)
-					} else{
+					} else {
 						setPosts((prev) => (prev ? prev.concat(data.posts) : data.posts))
 					}
 					if (data.posts.length < limit) {
@@ -55,10 +53,7 @@ const Posts = () => {
 		} catch (error) {
 			console.log(error)
 		}
-
-	}, [fetching, location, searchParams, lastPostNumber, stopFetching]);
-
-
+	}, [fetching, location, searchParams, lastPostNumber, stopFetching, category]);
 	const scrollHandler = (e) => {
 		if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 300) {
 			setFetching(true)

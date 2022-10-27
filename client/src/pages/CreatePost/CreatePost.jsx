@@ -58,7 +58,7 @@ const CreatePost = () => {
 					</button>
 					<div className="create-post__preview">
 						<img
-							src={`http://localhost:3001${imageUrl}`}
+							src={`https://infinite-tundra-41570.herokuapp.com${imageUrl}`}
 							alt="Uploaded"
 						/>
 					</div>
