@@ -1,6 +1,6 @@
 import "./Posts.scss"
 import Post from "../../components/Post/Post"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import axios from "../../axios"
 import { useSearchParams, useLocation, } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
