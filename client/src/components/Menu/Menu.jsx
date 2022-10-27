@@ -22,7 +22,7 @@ export const Menu = (props) => {
 
 	props.children.forEach(element => {
 		console.log(element);
-		(Array.isArray(element) || element?.type?.name === "MenuItem" || element?.type === "li" || element?.props?.to) ? listItem.push(element) : body.push(element)
+		(Array.isArray(element) || (element.type !== "div" && element.type !== "img") || element?.props?.to) ? listItem.push(element) : body.push(element)
 	});
 	return (
 		<div ref={toggleContainer} className={menuActive ? `list-container active` : `list-container`}>
