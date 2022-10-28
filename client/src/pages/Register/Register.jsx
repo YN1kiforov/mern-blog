@@ -2,10 +2,12 @@ import "./Register.scss"
 import { useFormik } from 'formik';
 import { Link, Navigate } from "react-router-dom";
 import * as Yup from 'yup';
-import { AuthContext } from "../../AuthContext";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Button from "../../components/Button/Button"
 import Input from "../../components/Input/Input";
+import { register } from "../../redux/slices/auth";
+import { useDispatch, useSelector } from 'react-redux'
+import { useSnackbar } from 'notistack';
 
 const SignupSchema = Yup.object().shape({
 	name: Yup.string()
@@ -18,9 +20,12 @@ const SignupSchema = Yup.object().shape({
 		.max(30, 'Максимум 30 символов!')
 		.required('Обязательно'),
 });
+
 const Register = () => {
+	const dispatch = useDispatch();
+	const currentUser = useSelector(state => state.auth.currentUser)
+	const { enqueueSnackbar } = useSnackbar();
 	const [isSubmit, setIsSubmit] = useState(false)
-	const { register, currentUser } = useContext(AuthContext)
 	const formik = useFormik({
 		initialValues: {
 			name: 'Яков',
@@ -30,8 +35,15 @@ const Register = () => {
 		validationSchema: SignupSchema,
 		onSubmit: values => {
 			setIsSubmit(true)
-			register(values)
-			setIsSubmit(false)
+			dispatch(register(values))
+				.then(res => res.payload
+					? enqueueSnackbar('Добро пожаловать', { autoHideDuration: 1500, variant: 'success', })
+					: enqueueSnackbar('Неверный логин или пароль', { autoHideDuration: 1500, variant: 'error', })
+				)
+				.finally(() => {
+					setIsSubmit(false)
+
+				})
 		},
 	});
 

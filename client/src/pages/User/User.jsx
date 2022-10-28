@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 import axios from "../../axios"
 import Loader from "../../components/Loader/Loader";
 
-
 import { useEffect, useState } from "react"
 
 const User = () => {
@@ -20,7 +19,7 @@ const User = () => {
 			try {
 				const [user, posts] = await Promise.all([
 					axios.get(`/user?id=${userId}`),
-					axios.get(`/getAll?limit=10&user=${userId}`)
+					axios.get(`/getAll?limit=4&user=${userId}`)
 				]);
 				setUser(user.data.user)
 				setPosts(posts.data.posts)

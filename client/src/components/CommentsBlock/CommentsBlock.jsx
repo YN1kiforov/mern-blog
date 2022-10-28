@@ -1,14 +1,14 @@
 import "./CommentsBlock.scss"
 import Comment from "../../components/Comment/Comment"
 import axios from "../../axios"
-import { useEffect, useState, useContext } from "react"
+import { useEffect, useState } from "react"
 import Button from "../../components/Button/Button"
-import { AuthContext } from "../../AuthContext"
 
+import { useSelector } from 'react-redux'
 
 
 const CommentsBlock = (props) => {
-	const { currentUser } = useContext(AuthContext)
+	const currentUser = useSelector(state => state.auth.currentUser)
 	const [commentValue, setCommentValue] = useState("");
 	const [comments, setComments] = useState(null);
 

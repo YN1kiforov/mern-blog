@@ -1,22 +1,22 @@
 import "./AuthorBlock.scss"
 import Avatar from "../../assets/avatar_icon.png"
 import { Link } from "react-router-dom"
-import { useState, useContext, useRef } from "react"
-import { AuthContext } from "../../AuthContext"
+import { useState, useRef } from "react"
 import { Menu, MenuItem } from "../../components/Menu/Menu"
 import axios from "../../axios"
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button"
 import Input from "../Input/Input"
-
+import { logout, editUser } from "../../redux/slices/auth"
+import { useDispatch, useSelector } from 'react-redux'
 
 const AuthorBlock = (props) => {
-	const { currentUser, logout, setCurrentUser } = useContext(AuthContext)
+	const currentUser = useSelector(state => state.auth.currentUser)
+	const dispatch = useDispatch();
 	let author = props.author || {};
 	const navigate = useNavigate();
 	const [avatarUrl, setAvatarUrl] = useState(null);
 	const inputFileRef = useRef(null);
-
 	const [isEditing, setIsEditing] = useState(false);
 	const [aboutInput, setAboutInput] = useState("");
 	const [nameInput, setNameInput] = useState("");
@@ -30,7 +30,7 @@ const AuthorBlock = (props) => {
 			author.name = nameInput;
 			author.about = aboutInput;
 			author.avatarUrl = avatarUrl;
-			setCurrentUser(prev => ({...prev,avatarUrl,}))
+			dispatch(editUser({ avatarUrl }))
 			setIsEditing(false)
 		} catch (error) {
 			console.log(error)
@@ -84,7 +84,7 @@ const AuthorBlock = (props) => {
 		try {
 			await axios.delete(`/user?id=${currentUser?._id}`)
 			navigate('/')
-			logout()
+			dispatch(logout())
 		} catch (error) {
 			console.log(error)
 		}

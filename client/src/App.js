@@ -6,7 +6,6 @@ import Post from './pages/FullPost/FullPost';
 import Posts from './pages/Posts/Posts';
 import Loader from './components/Loader/Loader'
 import SideBar from './components/SideBar/SideBar';
-import { AuthContextProvider } from './AuthContext';
 import { SnackbarProvider } from 'notistack';
 import {
   createBrowserRouter,
@@ -80,9 +79,7 @@ const App = () => {
   return (
     <div className="app">
       <SnackbarProvider maxSnack={3}>
-        <AuthContextProvider>
-          <RouterProvider router={router} />
-        </AuthContextProvider>
+        <RouterProvider router={router} />
       </SnackbarProvider>
     </div>
   );

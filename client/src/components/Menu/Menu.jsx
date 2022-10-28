@@ -21,7 +21,6 @@ export const Menu = (props) => {
 	}, [menuActive]);
 
 	props.children.forEach(element => {
-		console.log(element);
 		(Array.isArray(element) || (element.type !== "div" && element.type !== "img") || element?.props?.to) ? listItem.push(element) : body.push(element)
 	});
 	return (

@@ -1,15 +1,15 @@
 import "./SideBar.scss"
 import SideBarPost from "../SideBarPost/SideBarPost"
 import Tag from "../Tag/Tag"
-import { useState, useEffect, useContext } from "react"
-import { AuthContext } from "../../AuthContext"
+import { useState, useEffect } from "react"
 import axios from "../../axios"
 import telegram from "../../assets/telegram_icon.png"
 import Loader from "../../components/Loader/Loader";
+import { useSelector } from 'react-redux'
 
 const SideBar = () => {
-	const { tags } = useContext(AuthContext)
 	const [isLoading, setIsLoading] = useState(true);
+	const tags = useSelector(state => state.tags.tags)
 
 	const [posts, setPosts] = useState(null);
 	useEffect(() => {

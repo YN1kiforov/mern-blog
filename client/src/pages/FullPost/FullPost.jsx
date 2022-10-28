@@ -8,10 +8,10 @@ import MultipleSelect from "../../components/MultipleSelect/MultipleSelect"
 import Button from "../../components/Button/Button"
 import Loader from "../../components/Loader/Loader";
 
+import { useSelector } from 'react-redux'
 
 import { useLocation } from 'react-router-dom';
-import { useEffect, useState, useContext } from "react"
-import { AuthContext } from "../../AuthContext"
+import { useEffect, useState, } from "react"
 import { Menu, MenuItem } from "../../components/Menu/Menu"
 import axios from "../../axios"
 import Editor from "../../components/Editor/MyEditor";
@@ -19,7 +19,8 @@ import { useNavigate } from "react-router-dom";
 import { dataFormatter } from "../../dateFormatter"
 
 const FullPost = () => {
-	const { currentUser, tags } = useContext(AuthContext)
+	const currentUser = useSelector(state => state.auth.currentUser)
+	const tags = useSelector(state => state.tags.tags)
 	const location = useLocation()
 	const postId = location.pathname.split('/')[2];
 	const [isEditing, setIsEditing] = useState(false);

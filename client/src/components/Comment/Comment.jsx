@@ -1,14 +1,14 @@
 import "./Comment.scss"
 import Avatar from "../../assets/avatar_icon.png"
 import { dataFormatter } from "../../dateFormatter";
-import { AuthContext } from "../../AuthContext"
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { Menu, MenuItem } from "../../components/Menu/Menu"
 import Button from "../../components/Button/Button"
+import { useSelector } from 'react-redux'
 
 
 const Comment = (props) => {
-	const { currentUser } = useContext(AuthContext)
+	const currentUser = useSelector(state => state.auth.currentUser)
 	const [commentBody, setCommentBody] = useState(props.body);
 	const [isEditing, setIsEditing] = useState(false);
 	const [editInput, setEditInput] = useState(props.body);

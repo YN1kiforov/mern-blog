@@ -2,11 +2,13 @@ import "./Login.scss"
 import { Link, Navigate } from "react-router-dom";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useContext, useState } from "react";
-import { AuthContext } from "../../AuthContext";
-
+import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from "../../redux/slices/auth";
 import Button from "../../components/Button/Button"
 import Input from "../../components/Input/Input";
+import { useSnackbar } from 'notistack';
+
 const SignupSchema = Yup.object().shape({
 
 	email: Yup.string().email('Invalid email').required('Обязательно'),
@@ -17,9 +19,10 @@ const SignupSchema = Yup.object().shape({
 });
 
 const Login = () => {
-	const { login, currentUser } = useContext(AuthContext)
+	const { enqueueSnackbar } = useSnackbar();
+	const dispatch = useDispatch();
 	const [isSubmit, setIsSubmit] = useState(false)
-
+	const currentUser = useSelector(state => state.auth.currentUser)
 	const formik = useFormik({
 		initialValues: {
 			email: 'email@mail.ru',
@@ -28,8 +31,14 @@ const Login = () => {
 		validationSchema: SignupSchema,
 		onSubmit: (values) => {
 			setIsSubmit(true)
-			login(values)
-			setIsSubmit(false)
+			dispatch(login(values))
+				.then(res => res.payload
+					? enqueueSnackbar('Добро пожаловать', { autoHideDuration: 1500, variant: 'success', })
+					: enqueueSnackbar('Неверный логин или пароль', { autoHideDuration: 1500, variant: 'error', })
+				)
+				.finally(() => {
+					setIsSubmit(false)
+				})
 		}
 	});
 

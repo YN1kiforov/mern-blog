@@ -1,15 +1,19 @@
 import "./CreatePost.scss"
 import Editor from "../../components/Editor/MyEditor";
-import { useState, useContext, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "../../axios"
-import { AuthContext } from "../../AuthContext"
 import { useNavigate } from "react-router-dom";
 import MultipleSelect from "../../components/MultipleSelect/MultipleSelect"
 import Button from "../../components/Button/Button"
-
+import { useSnackbar } from 'notistack';
+import { useSelector } from 'react-redux'
 
 const CreatePost = () => {
-	const { currentUser, enqueueSnackbar, tags } = useContext(AuthContext)
+	const { enqueueSnackbar } = useSnackbar();
+	const currentUser = useSelector(state => state.auth.currentUser)
+	const tags = useSelector(state => state.tags.tags)
+
+
 	const [optionSelected, setOptionSelected] = useState([]);
 
 	const [body, setBody] = useState("");
