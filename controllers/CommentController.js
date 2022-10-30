@@ -9,7 +9,6 @@ exports.getComments = async (req, res) => {
 			select:
 				'name avatarUrl',
 		})
-		//const filteredcomments = posts.slice(posts.length - (limit || 0))
 		res.json({ message: `norm :))`, comments })
 
 	} catch (e) {

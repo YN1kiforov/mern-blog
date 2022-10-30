@@ -11,7 +11,6 @@ const post = require('./routes/post')
 
 const cors = require('cors');
 
-
 const mongoURI = "mongodb+srv://admin:admin@cluster0.xvhkn1b.mongodb.net/?retryWrites=true&w=majority"
 
 mongoose.connect(mongoURI).then((e) => { console.log(`DB has been connected`) }).catch((e) => { console.log(`DB Error ${e}`) })
