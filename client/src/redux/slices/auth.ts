@@ -38,7 +38,7 @@ export const register = createAsyncThunk(
   }
 )
 const initialState: AuthState = {
-  currentUser: JSON.parse(localStorage.getItem("user") || "") || null,
+  currentUser: JSON.parse(localStorage.getItem("user") || "null") || null,
 }
 
 export const authSlice = createSlice({
