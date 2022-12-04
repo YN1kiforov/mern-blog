@@ -11,7 +11,7 @@ type Props = {
 const SideBarPost = ({ link, imageUrl, title, date }: Props) => {
 	return (
 		<li className="side-bar-post">
-			<Link to={`/post/${link}`}><img src={`https://infinite-tundra-41570.herokuapp.com${imageUrl}`} alt="kartinka" /></Link>
+			<Link to={`/post/${link}`}><img src={`${imageUrl}`} alt="kartinka" /></Link>
 			<Link to={`/post/${link}`}><h4 className="side-bar-post__title">{title}</h4></Link>
 
 			<time className="side-bar-post__date">{dataFormatter(date)}</time>

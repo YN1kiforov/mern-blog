@@ -22,7 +22,7 @@ const CreatePost = () => {
 					</Button>
 					<div className="create-post__preview">
 						<img
-							src={`https://infinite-tundra-41570.herokuapp.com${imageUrl}`}
+							src={`${imageUrl}`}
 							alt="Uploaded"
 						/>
 					</div>

@@ -23,7 +23,7 @@ type Props = {
 const Post = ({ author, body, link, imageUrl, title, date, commentsCount, viewsCount }: Props) => {
 	return (
 		<div className="post">
-			<img src={`https://infinite-tundra-41570.herokuapp.com${imageUrl}`} alt="Картинка поста" />
+			<img src={`${imageUrl}`} alt="Картинка поста" />
 			<h2><Link to={`/post/${link}`}>{title}</Link></h2>
 			<ul className='post__info'>
 				<li className="post__date">{dataFormatter(date)}</li>
@@ -41,7 +41,7 @@ const Post = ({ author, body, link, imageUrl, title, date, commentsCount, viewsC
 				<Link to={`/post/${link}`}><Button variant="arrow" className=''>Читать далее</Button></Link>
 				<Link to={`/user/${author?._id}`}>
 					<div className="post__author">
-						<img src={author.avatarUrl ? `https://infinite-tundra-41570.herokuapp.com${author.avatarUrl}` : Avatar} className="avatar" alt="" />
+						<img src={author.avatarUrl ? `${author.avatarUrl}` : Avatar} className="avatar" alt="" />
 						<span>{author.name}</span>
 					</div>
 				</Link>

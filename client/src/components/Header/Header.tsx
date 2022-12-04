@@ -38,7 +38,7 @@ const Header = React.memo(function () {
 					{currentUser
 						? <>
 							<Menu>
-								<img alt="kartinka" src={currentUser?.avatarUrl ? `https://infinite-tundra-41570.herokuapp.com${currentUser?.avatarUrl}` : avatar} />
+								<img alt="kartinka" src={currentUser?.avatarUrl ? `${currentUser?.avatarUrl}` : avatar} />
 								<Link to={`/user/${currentUser._id}`}><MenuItem>Профиль</MenuItem></Link>
 								<Link to="/create-post"><MenuItem>Написать блог</MenuItem></Link>
 								<MenuItem onClick={logoutHandler}>Выйти</MenuItem>

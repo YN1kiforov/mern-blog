@@ -43,7 +43,7 @@ const AuthorBlock = ({ author, options }: Props) => {
 						<Input value={aboutInput} onChange={(e: React.FormEvent<HTMLInputElement>) => setAboutInput(e.currentTarget.value)} />
 					</>
 					: <>
-						<img className="author__avatar" src={author.avatarUrl ? `https://infinite-tundra-41570.herokuapp.com${author.avatarUrl}` : Avatar} alt="" />
+						<img className="author__avatar" src={author.avatarUrl ? `${author.avatarUrl}` : Avatar} alt="" />
 						<Link to={`/user/${author?._id}`}>{author?.name}</Link>
 						<div className='author__about'>{author?.about}</div>
 					</>

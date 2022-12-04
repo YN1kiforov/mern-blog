@@ -27,7 +27,7 @@ const Comment = ({ author, id, edit, body, date, deleteComment }: Props) => {
 	const isYourComment = currentUser?._id === author._id
 	return (
 		<div className="comment">
-			<img src={author.avatarUrl ? `https://infinite-tundra-41570.herokuapp.com${author.avatarUrl}` : Avatar} className="avatar" alt="avatarka" />
+			<img src={author.avatarUrl ? `${author.avatarUrl}` : Avatar} className="avatar" alt="avatarka" />
 			<div className='comment__content'>
 				<div className='comment__top'>
 					<h5 className="comment__name">{author?.name}</h5>
