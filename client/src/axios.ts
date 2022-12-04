@@ -1,5 +1,5 @@
 import axios from "axios";
 const instance = axios.create({
-	baseURL: 'https://infinite-tundra-41570.herokuapp.com/',
+	baseURL: 'https://mern-blog-a63e.vercel.app/',
 });
 export default instance
