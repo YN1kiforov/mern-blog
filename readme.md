@@ -1,4 +1,4 @@
-#Blog
+<h1>Blog</h1>
 Deploy on Netlify = https://blog-mern-yn.netlify.app/
 
 
