@@ -1,2 +1,2 @@
 Netlify = https://blog-mern-yn.netlify.app/
-![Иллюстрация к проекту](https://i.yapx.ru/VE9MG.png)
+![Иллюстрация к проекту](https://github.com/YN1kiforov/mern-blog/raw/main/uploads/blins.jpg)
